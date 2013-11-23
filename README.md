@@ -14,3 +14,8 @@ The ultimate aim: being simple and accessible to literally everyone.
 Possible applications: accounting, early programming education, data terminals, retro-style gaming, hobby design and programming.
 
 And the most important of all - to bring some entertainment while working on it...
+
+
+
+Sounds like joy and you'd want to collaborate? Email me your request to toyaga@mail.com (don't forget to include your github email).
+
