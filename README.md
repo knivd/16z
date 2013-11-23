@@ -12,3 +12,5 @@ Zilog's Z16F is a true gem amongst the dominated by Intel, ARM and MIPS today's 
 The ultimate aim: being simple and accessible to literally everyone.
 
 Possible applications: accounting, early programming education, data terminals, retro-style gaming, hobby design and programming.
+
+And the most important of all - to bring some entertainment while working on it...
