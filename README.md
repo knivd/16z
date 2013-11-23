@@ -9,5 +9,4 @@ This project is about a computer - taking from the place where things went wrong
 
 Zilog's Z16F is a true gem amongst the dominated by Intel, ARM and MIPS today's processors. Not paticularly fast, neither exceptional with anything to mention, yet it is just something that revives that long forgotten urge to create - a processor in the real style of the 'golden age' of the personal computing.
 
-The ultimate aim: simple to literally everyone.
-Possible applications: accounting, early programming education, data terminals, retro-style gaming, hobby design and programming.
+The ultimate aim: simple to literally everyone.Possible applications: accounting, early programming education, data terminals, retro-style gaming, hobby design and programming.
