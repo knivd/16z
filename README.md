@@ -17,5 +17,6 @@ And the most important of all - to bring some entertainment while working on it.
 
 
 
-Sounds like joy and you'd want to collaborate? Email me your request to toyaga@mail.com (don't forget to include your github email).
+Sounds like fun and you'd want to collaborate? 
+Email your request to toyaga@mail.com (don't forget to include your github email in the text).
 
