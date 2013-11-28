@@ -1,0 +1,10 @@
+Output: Test Point Report
+Type  : Test Points
+From  : Project [16Z.PrjPcb]
+   Generated File[Fabrication Testpoint Report for PCB.csv]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 1:06:57 PM On 28/11/2013
