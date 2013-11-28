@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
-NCDrill File Report For: PCB.PcbDoc   28/11/2013  1:06:33 PM
+NCDrill File Report For: PCB.PcbDoc   28/11/2013  3:02:51 PM
 ---------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -8,15 +8,15 @@ ASCII SlotHoles File : PCB-SlotHoles.TXT
 
 Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
 ---------------------------------------------------------------------------
-T1        0.2mm (7.874mil)         Round          390              1389.95 mm (54.72 Inch)
-T2        0.3mm (11.811mil)        Round          35               615.60 mm (24.24 Inch)
-T3        0.5mm (19.685mil)        Round          29               456.83 mm (17.99 Inch)
+T1        0.2mm (7.874mil)         Round          390              1361.18 mm (53.59 Inch)
+T2        0.3mm (11.811mil)        Round          38               618.08 mm (24.33 Inch)
+T3        0.5mm (19.685mil)        Round          36               586.43 mm (23.09 Inch)
 T4        0.7mm (27.559mil)        Round          2                5.60 mm (0.22 Inch)
 T5        0.7mm (27.559mil)        Slot           3                7335.35 mm (288.79 Inch)
 T6        0.8mm (31.496mil)        Slot           3                7380.12 mm (290.56 Inch)
 T7        0.9mm (35.433mil)        Round          6                11.80 mm (0.46 Inch)
 T8        1mm (39.37mil)           Round          220              851.60 mm (33.53 Inch)
-T9        1.016mm (40mil)          Round          16               169.37 mm (6.67 Inch)
+T9        1.016mm (40mil)          Round          16               165.60 mm (6.52 Inch)
 T10       1.0414mm (41mil)         Round          7                91.51 mm (3.60 Inch)
 T11       1.1mm (43.307mil)        Round          11               155.36 mm (6.12 Inch)
 T12       1.2mm (47.244mil)        Round          15               33.17 mm (1.31 Inch)
@@ -32,6 +32,6 @@ T21       3.2mm (125.984mil)       Round          2                25.00 mm (0.9
 T22       3.3mm (129.921mil)       Round          9                760.34 mm (29.93 Inch)
 T23       1.65mm (64.961mil)       Round          2         NPTH   7.00 mm (0.28 Inch)
 ---------------------------------------------------------------------------
-Totals                                            782              27147.21 mm (1068.79 Inch)
+Totals                                            792              27246.74 mm (1072.71 Inch)
 
-Total Processing Time (hh:mm:ss) : 00:00:00
+Total Processing Time (hh:mm:ss) : 00:00:01
