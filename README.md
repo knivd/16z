@@ -5,7 +5,7 @@ The 'contemporary retro' computer
 
   '640K ought to be enough for anyone...'
   
-Although now it is known that Bill Gates has never said that himself, whoever did was probably right. How the resources in a system are used by the software is all that actually counts. Of course that assumes a system thought to properly utilise well written software...
+Although it is known now that Bill Gates has never said that himself, whoever did, was probably right. How the resources in a system are used by the software is all that actually counts. Of course that assumes a system thought to properly utilise well written software...
 
 Personal computing has gone a long way, but that doesn't mean it was just the right one. There is still a large number of real-life applications where an old DOS (or other similar style)-based machine works just as fine, if not even better, than the latest multicore gigahertz beast running the most recent colourful software disaster. On the way up somehow the computers have lost their way and users have lost their enthusiasm and inspiration along with that.
 
