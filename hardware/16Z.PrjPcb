@@ -248,6 +248,9 @@ Variant=[No Variations]
 GenerateBOM=1
 OutputJobsCount=0
 
+[Generic_EDE]
+OutputDir=..\manufacturing\ProjectOutputs
+
 [Generic_SmartPDF]
 AutoOpenFile=0
 AutoOpenOutJob=-1
@@ -281,9 +284,6 @@ SCH_ExpandSheetNumber=0
 SCH_ExpandDocumentNumber=0
 SCH_HasExpandLogicalToPhysicalSheets=-1
 SaveSettingsToOutJob=0
-
-[Generic_EDE]
-OutputDir=..\manufacturing\ProjectOutputs
 
 [OutputGroup1]
 Name=Netlist Outputs
