@@ -20,6 +20,9 @@ Possible applications: accounting, early programming education, data terminals, 
 And the most important of all - to bring some entertainment while working on it...
 
 
+Check the project's Wiki pages for more detailed information.
+
+
 
 toyaga@mail.com
 
