@@ -1,3 +1,8 @@
+/*
+ZNEO UART functions (UART0 only as supported by Toyaga 16z)
+(C) 2014 Konstantin Dimitrov
+*/
+
 #ifndef _UART0_H
 #define _UART0_H
 
@@ -7,13 +12,16 @@ The line (*__print_xputch)(ch); in function __print_putch(), contains that extra
 invalid reference call to the putch() function. After removing the asterisk everything works fine.
 */
 
-#include <stdarg.h>
+#define UART0_RX_BUFFER_SIZE 256	// UART0 reception buffer size in bytes
 
-#define UART0_RX_BUFFER_SIZE 256
-
+// initialise and enable UART0
+// input
+// (baudrate) desired baudrate in bps; data protocol is fixed at 8N1
 void uart0_init(unsigned long baudrate);
+
+// standard C functions for input/output
 int putch(char ch);
-char getch(void);
-int kbhit(void);
+int kbhit(void);	// unblocking test
+char getch(void);	// blocking read
 
 #endif

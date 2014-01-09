@@ -1,0 +1,215 @@
+[WorkState_v1_2]
+ptn_Child1=Frames
+
+[WorkState_v1_2.Frames]
+ptn_Child1=ChildFrames
+
+[WorkState_v1_2.Frames.ChildFrames]
+ptn_Child1=Document-0
+ptn_Child10=Document-9
+ptn_Child11=Document-10
+ptn_Child12=Document-11
+ptn_Child2=Document-1
+ptn_Child3=Document-2
+ptn_Child4=Document-3
+ptn_Child5=Document-4
+ptn_Child6=Document-5
+ptn_Child7=Document-6
+ptn_Child8=Document-7
+ptn_Child9=Document-8
+
+[WorkState_v1_2.Frames.ChildFrames.Document-0]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-0]
+DocPathName=.\memory.c
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPKDAAAAAAKDAAAAAAKBFAAAAAIOBAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-1]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-1.ViewFrame-0]
+DocPathName=.\spi.c
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPAAAAAAAAAAAAAAAAEOEAAAAACLBAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-10]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-10.ViewFrame-0]
+DocPathName=.\eve.h
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPHFAAAAAAHFAAAAAALDFAAAAAJACAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-11]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-11.ViewFrame-0]
+DocPathName=.\main.h
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPEHAAAAAAEHAAAAAAIFFAAAAAGCCAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-2]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-2.ViewFrame-0]
+DocPathName=.\main.c
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=True
+IsFrameVisible=True
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPOKAAAAAAOKAAAAAACJFAAAAAAGCAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-3]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-3.ViewFrame-0]
+DocPathName=.\uart0.c
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPAAAAAAAAAAAAAAAAEOEAAAAACLBAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-4]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-4.ViewFrame-0]
+DocPathName=C:\PROGRA~2\ZiLOG\ZDSII_~1.1\src\boot\common\startupexs.asm
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPNBAAAAAANBAAAAAALOEAAAAAKLBAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-5]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-5.ViewFrame-0]
+DocPathName=C:\PROGRA~2\ZiLOG\ZDSII_~1.1\include\zilog\zneo.h
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPHFAAAAAAHFAAAAAALDFAAAAAJACAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-6]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-6.ViewFrame-0]
+DocPathName=.\spi.h
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPHFAAAAAAHFAAAAAAFCFAAAAAEPBAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-7]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-7.ViewFrame-0]
+DocPathName=C:\PROGRA~2\ZiLOG\ZDSII_~1.1\include\std\STDIO.H
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPEHAAAAAAEHAAAAAAIFFAAAAAGCCAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-8]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-8.ViewFrame-0]
+DocPathName=.\uart0.h
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPBJAAAAAABJAAAAAAPFFAAAAAOCCAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-9]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-9.ViewFrame-0]
+DocPathName=.\eve.c
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPHPPPPPPPNNPPPPPPKDAAAAAAKDAAAAAAOBFAAAAAMOBAAAAA
+
+[bookmarks]
+C:\Dimeji Okeniyi\Classes\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\Dimeji Okeniyi\Desktop\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\Dimeji Okeniyi\Dimeji Okeniyi\Classes\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\Dimeji Okeniyi\Dimeji Okeniyi\Desktop\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\Documents and Settings\Administrator\Classes\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\Documents and Settings\Administrator\Desktop\CSCI69~1\NEWPIE~1\main.c=42,84
+C:\Documents and Settings\Administrator\Desktop\CSCI69~1\NEWPIE~1\rttl.c=23,295,307,325
+C:\Documents and Settings\CS GWU\MYDOCU~1\EXAMPL~1\letter_defs.h=91,100,127,163,172,253,298,334,406,433,460,487,505,550,559,568,577,586,595,631
+C:\Documents and Settings\Classes\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\Documents and Settings\Embedded\Desktop\EXAMPL~1\letter_defs.h=93,102,129,165,174,255,300,336,408,435,462,489,507,552,561,570,579,588,597,633
+C:\Documents and Settings\Embedded\Desktop\EXAMPL~1\main.c=417
+C:\Documents and Settings\Embedded\MYDOCU~1\EXAMPL~1\letter_defs.h=91,100,127,163,172,253,298,334,406,433,460,487,505,550,559,568,577,586,595,631
+C:\Documents and Settings\Embedded\My Documents\Classes\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\Documents and Settings\PC\Desktop\EMBEDD~1\COPYOF~1\main_ver3_2.c=26
+C:\Documents and Settings\PC\Desktop\EMBEDD~1\PROJ1H~2\board_uptime.c=10
+C:\Documents and Settings\PC\Desktop\Embedded Systems Projects\COPYOF~1\main_ver3_2.c=26
+C:\Documents and Settings\PC\MYDOCU~1\SCHOOL~1\EMBEDD~1\PROJ3C~1\CLIVER~2\main_ver1.c=189
+C:\Documents and Settings\PC\MYDOCU~1\SCHOOL~1\EMBEDD~1\PROJ3C~1\main_ver1.c=248
+C:\Documents and Settings\PC\My Documents\School - GWU\Embedded Systems Projects\CLIVER~1\main_ver1.c=244
+C:\Documents and Settings\PC\My Documents\School - GWU\Embedded Systems Projects\Proj3 CLI\CLI ver 2\CLIFUN~1.C\CLI functions.c=473
+C:\Documents and Settings\PC\My Documents\School - GWU\Embedded Systems Projects\Proj3 CLI\PR3F1E~1\PROJ1H~2\board_uptime.c=10
+C:\Documents and Settings\PC\My Documents\School - GWU\Embedded Systems Projects\Proj3 CLI\main_ver1.c=244
+C:\Documents and Settings\PC\My Documents\School - GWU\Embedded Systems Projects\Proj4 CLI keyboard\CLIFUN~1.C\CLI functions.c=473
+C:\Documents and Settings\PC\My Documents\School - GWU\PR3F1E~1\PROJ1H~2\board_uptime.c=10
+C:\Documents and Settings\csstudent\Desktop\EXAMPL~1\letter_defs.h=93,102,129,165,174,255,300,336,408,435,462,489,507,552,561,570,579,588,597,633
+C:\Documents and Settings\csstudent\Desktop\EXAMPL~1\main.c=315
+C:\Documents and Settings\csstudent\Desktop\EXAMPL~4\letter_defs.h=93,102,129,165,174,255,300,336,408,435,462,489,507,552,561,570,579,588,597,633
+C:\Documents and Settings\csstudent\Desktop\EXAMPL~4\main.c=315
+C:\EmbeddedSystems\2009 Embedded Systems\2009_assignments\Reed\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\EmbeddedSystems\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\EmbeddedSystems\2011 Embedded Assignments\Marchevsky\marchevsky-lab4\EXAMPL~3\letter_defs.h=93,102,129,165,174,255,300,336,408,435,462,489,507,552,561,570,579,588,597,633
+C:\EmbeddedSystems\2011 Embedded Assignments\Marchevsky\marchevsky-lab4\EXAMPL~3\main.c=315
+C:\EmbeddedSystems\2011 Embedded Assignments\Marchevsky\marchevsky-lab6\Desktop\EXAMPL~3\letter_defs.h=93,102,129,165,174,255,300,336,408,435,462,489,507,552,561,570,579,588,597,633
+C:\EmbeddedSystems\2011 Embedded Assignments\Marchevsky\marchevsky-lab6\Desktop\EXAMPL~3\main.c=315
+C:\EmbeddedSystems\2011 Embedded Assignments\Marchevsky\marchevsky-lab6\Desktop\EXAMPL~4\letter_defs.h=93,102,129,165,174,255,300,336,408,435,462,489,507,552,561,570,579,588,597,633
+C:\EmbeddedSystems\2011 Embedded Assignments\Marchevsky\marchevsky-lab6\Desktop\EXAMPL~4\main.c=315
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Classes\2009 Embedded Systems\2009_assignments\Reed\Lab1\EXAMPL~3\EXAMPL~1\main.c=1,3,6,8,10,53,54,55,57,67,75,77,89,91,218,224,226,229,239,240,241,245,253,260,264,268,272,273,274,276,277,278,279,280,281,282,283,284,286,287,288,289,290,291,292,293,294,296,297,298,300,301,302,304,305,306,308,309,310,311,312,313,315,316,317,321,322,323,347,349,351,353,358,359,360,364,365,371,377,381,442,454,455,459
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab1\colmatrix.h=37,203,217,218,224,225,237,238,239,244,245,246,258,259,260,328,329,330,349,350,364,365,447,448,449,497
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\LAB1(O~1\colmatrix.h=37,203,217,218,224,225,237,238,239,244,245,246,258,259,260,328,329,330,349,350,364,365,447,448,449,497
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\Lab1\colmatrix.h=31,197,211,212,218,219,231,232,233,238,239,240,252,253,254,322,323,324,343,344,358,359,441,442,443,491
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\Lab2\LAB1(O~1\colmatrix.h=37,203,217,218,224,225,237,238,239,244,245,246,258,259,260,328,329,330,349,350,364,365,447,448,449,497
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\Lab2\Lab1\colmatrix.h=31,197,211,212,218,219,231,232,233,238,239,240,252,253,254,322,323,324,343,344,358,359,441,442,443,491
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\examples\LAB1(O~1\colmatrix.h=37,203,217,218,224,225,237,238,239,244,245,246,258,259,260,328,329,330,349,350,364,365,447,448,449,497
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\examples\Lab1\colmatrix.h=31,197,211,212,218,219,231,232,233,238,239,240,252,253,254,322,323,324,343,344,358,359,441,442,443,491
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\examples\Lab2\LAB1(O~1\colmatrix.h=37,203,217,218,224,225,237,238,239,244,245,246,258,259,260,328,329,330,349,350,364,365,447,448,449,497
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_3_yichaoyu_Yu_Lab3\examples\Lab2\Lab1\colmatrix.h=31,197,211,212,218,219,231,232,233,238,239,240,252,253,254,322,323,324,343,344,358,359,441,442,443,491
+C:\EmbeddedSystems\2011 Embedded Assignments\Yu\Lab_4_yichaoyu_Yu_Lab4\LAB1(O~1\colmatrix.h=37,203,217,218,224,225,237,238,239,244,245,246,258,259,260,328,329,330,349,350,364,365,447,448,449,497
+C:\PROGRA~2\ZiLOG\ZDSII_~1.1\include\std\STRING.H=0
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#0=0
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#1=59139
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#2=257
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#23=38001
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#24=38003
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#25=38004
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#26=38002
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#27=38000
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#28=38005
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#29=38008
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#3=0
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#30=259
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#31=0
+C:\Users\Dan\AppData\Roaming\Zilog\ZNEO\Bar#4=38128
