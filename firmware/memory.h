@@ -6,7 +6,10 @@ Memory management functions
 #ifndef _MEMORY_H
 #define _MEMORY_H
 
-#define M(addr) (*(unsigned char volatile far*)(addr))	// macro definition for provision of byte access to the entire physical memory
+#define M8(addr) (*(unsigned char volatile far*)(addr))		// macro definition for provision of 8-bit access to the entire physical memory
+#define M16(addr) (*(unsigned short volatile far*)(addr))	// macro definition for provision of 16-bit access to the entire physical memory
+#define M32(addr) (*(unsigned long volatile far*)(addr))	// macro definition for provision of 32-bit access to the entire physical memory
+#define M64(addr) (*(unsigned long long volatile far*)(addr))	// macro definition for provision of 64-bit access to the entire physical memory
 
 #define MEM_BLK_FREE	0	// (recommended value 0) free
 #define MEM_BLK_ROM		15	// (ALL BITS MUST BE ONES) unimplemented or ROM; also used as bitmask for MEM_BLK_xxx constants

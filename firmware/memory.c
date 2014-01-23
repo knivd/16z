@@ -37,9 +37,9 @@ void memory_build_map(void) {
 	memset((void *)MEM_ABS_ADDRESS,0xff,size);
 	memset(mem_map,0xffffffff,sizeof(mem_map));
 	for(addr=MEM_BLOCK_SIZE-1; addr<size; addr+=MEM_BLOCK_SIZE) {
-		unsigned char b0,b1;
-		b0=M(addr); M(addr)^=0xff; b1=M(addr);
-		memory_set_status(addr,(((b0+b1) == 0xff)? MEM_BLK_FREE : MEM_BLK_ROM));
+		unsigned long b0,b1,b2;
+		b0=M32(addr); M32(addr)=~M32(addr); b1=M32(addr); M32(addr)=~M32(addr); b2=M32(addr);
+		memory_set_status(addr,(((b0+b1+b2) == (b0-1))? MEM_BLK_FREE : MEM_BLK_ROM));
 	}
 }
 

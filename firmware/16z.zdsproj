@@ -3,12 +3,12 @@
 
 <!-- file information -->
 <files>
-<file filter-key="flash">Release\16z.hex</file>
 <file filter-key="">.\main.c</file>
 <file filter-key="">.\memory.c</file>
 <file filter-key="">.\spi.c</file>
 <file filter-key="">.\uart0.c</file>
 <file filter-key="">.\eve.c</file>
+<file filter-key="flash">C:\Users\Konstantin\Desktop\nuttx.hex</file>
 </files>
 
 <!-- configuration information -->
