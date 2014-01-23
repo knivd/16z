@@ -25,11 +25,11 @@ void main(void) {
 	PADD=0x9f; PBDD=0xff; PCDD=0x63; PDDD=0x00; PEDD=0xff; PFDD=0x00; PGDD=0x00; PHDD=0xf0; PJDD=0x66; PKDD=0x00;	// set port directions
 	PAHDE=0x03; PBHDE=0xff; PCHDE=0x03;	// enable high drive current for GP0..GP11 pints
 	PAAFL=0xf0; PCAFL=0x38; PDAFH=0xff; PFAFL=0xff; PGAFL=0xff; PHAFH=0x03; PKAFL=0xff;	// set port functions
-	PCOUT=0x04; PHOUT=0x0c; PJOUT=0x99;	// degault high state for some ports
+	PCOUT=0xc4; PHOUT=0xff; PJOUT=0xff;	// degault high state for some ports
 	
-	// these will be set by the linker
-	// EXTCS0=0x9001; EXTCS1=0x9001; EXTCS2=0x9011; EXTCS3=0x9015; EXTCS4=0x9015; EXTCS5=0x9015;
-	// EXTCT=0x40; 	// enable and configure the external interface
+	// these will be set by the linker anyway
+	EXTCS0=0x9001; EXTCS1=0x9001; EXTCS2=0x9011; EXTCS3=0x9015; EXTCS4=0x9015; EXTCS5=0x9015;
+	EXTCT=0x40; 	// enable and configure the external interface
 
 	memory_build_map();	// initialise and test the available memory and build memory map
 	uart0_init(57600);	// initialise UART with default parameters (57600,8N1)
