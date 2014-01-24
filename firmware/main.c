@@ -18,7 +18,7 @@ void main(void) {
 	OSCDIV=0x00;	// no divider for the oscillator
     OSCCTL=0xe7; OSCCTL=0x18;	// unlock the oscillator control
     OSCCTL=0xf8;	// enable the external crystal oscillator and prepare the watchdog for later use
-	{ int t; for(t=0; t<50000; t++); }	// delay for crystal oscialltor stabilisation
+	{ int t; for(t=0; t<50000; t++); }	// delay for crystal oscillator stabilisation
 	OSCCTL=0xe7; OSCCTL=0x18;	// unlock the oscillator control
     OSCCTL|=0x01;	// select the external crystal oscillator
 
