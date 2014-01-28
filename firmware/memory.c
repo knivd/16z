@@ -36,11 +36,31 @@ void memory_build_map(void) {
 	unsigned long addr,size=8*MEM_MAP_SIZE*MEM_BLOCK_SIZE;	// one 32-bit map cell represents eight memory blocks	
 	memset((void *)MEM_ABS_ADDRESS,0xff,size);
 	memset(mem_map,0xffffffff,sizeof(mem_map));
-	for(addr=MEM_BLOCK_SIZE-1; addr<size; addr+=MEM_BLOCK_SIZE) {
+	for(addr=MEM_ABS_ADDRESS; addr<size; addr+=MEM_BLOCK_SIZE) {
 		unsigned long b0,b1,b2;
 		b0=M32(addr); M32(addr)=~M32(addr); b1=M32(addr); M32(addr)=~M32(addr); b2=M32(addr);
 		memory_set_status(addr,(((b0+b1+b2) == (b0-1))? MEM_BLK_FREE : MEM_BLK_ROM));
 	}
+}
+
+
+unsigned long memory_test(unsigned long begin, unsigned long length) {
+	unsigned long addr, r=0;
+	for(addr=begin; addr<=(begin+length-4); addr++) {
+		unsigned long mask[4]= {0xff690096, 0x12488421, 0xffffffff, 0x00000000};
+		unsigned long z;
+		unsigned char b,m=0;
+		for(b=0; b<4; b++) {
+			M32(addr)=mask[b];
+			z=M32(addr);
+			if(mask[b] == z) m++; else break;
+		}
+		if(m == 4) {
+			r++;
+			if(addr == (begin+length-4)) r+=3;
+		}
+	}
+	return r;
 }
 
 
