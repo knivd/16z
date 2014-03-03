@@ -45,9 +45,9 @@ void memory_build_map(void) {
 
 
 unsigned long memory_test(unsigned long begin, unsigned long length) {
+	unsigned long mask[4]= {0xff690096, 0x12488421, 0xffffffff, 0x00000000};
 	unsigned long addr, r=0;
-	for(addr=begin; addr<=(begin+length-4); addr++) {
-		unsigned long mask[4]= {0xff690096, 0x12488421, 0xffffffff, 0x00000000};
+	for(addr=begin; addr<=(begin+length-4); addr++) {		
 		unsigned long z;
 		unsigned char b,m=0;
 		for(b=0; b<4; b++) {
