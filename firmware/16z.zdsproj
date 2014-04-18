@@ -240,6 +240,13 @@
 
 <!-- breakpoint information -->
 <breakpoints>
+<breakpoint temporary="false" enabled="true" >
+<line-number>49</line-number>
+<pathname>K:\Work\16z\firmware\main.c</pathname>
+<address>33224</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
 </breakpoints>
 
 </project>
