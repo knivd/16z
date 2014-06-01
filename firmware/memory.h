@@ -31,10 +31,13 @@ unsigned char memory_get_block(unsigned long addr);
 
 // "quick" test of the entire memory and build memory map in mem_map[]
 // NOTE: this function may take a while to finish and it is strongly recommended to disable watchdog operation during its execution
+// NOTE: small memory model
 void memory_build_map(void);
 
 // thorough test of specified memory area are return the number of usable bytes in it
-// NOTE: this function may take a while to finish and it is strongly recommended to disable watchdog operation during its execution
+// NOTE: this is EXTREMELY slow function. It is only used for hardware debugging purposes
+// NOTE: the watchdog must be disabled while executing this function
+// NOTE: small memory model
 // input
 // (begin) absolute memory address from where to begin the test
 // (length) length of the tested block; must be at least 4 bytes long

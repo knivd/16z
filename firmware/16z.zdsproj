@@ -7,7 +7,6 @@
 <file filter-key="">.\memory.c</file>
 <file filter-key="">.\spi.c</file>
 <file filter-key="">.\uart0.c</file>
-<file filter-key="">.\eve.c</file>
 <file filter-key="flash">C:\Users\Konstantin\Desktop\nuttx.hex</file>
 </files>
 
@@ -145,7 +144,7 @@
 <option name="keeplst" type="boolean" change-action="none">true</option>
 <option name="list" type="boolean" change-action="none">false</option>
 <option name="listinc" type="boolean" change-action="none">false</option>
-<option name="model" type="string" change-action="compile">S</option>
+<option name="model" type="string" change-action="compile">L</option>
 <option name="modsect" type="boolean" change-action="compile">false</option>
 <option name="stdinc" type="string" change-action="compile"></option>
 <option name="usrinc" type="string" change-action="compile"></option>
@@ -241,9 +240,9 @@
 <!-- breakpoint information -->
 <breakpoints>
 <breakpoint temporary="false" enabled="true" >
-<line-number>49</line-number>
+<line-number>38</line-number>
 <pathname>K:\Work\16z\firmware\main.c</pathname>
-<address>33224</address>
+<address>0</address>
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>

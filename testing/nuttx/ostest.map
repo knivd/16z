@@ -1,0 +1,2889 @@
+
+IEEE 695 OMF Linker Version 6.25 (11071101)
+Copyright (C) 1999-2008 Zilog, Inc. All Rights Reserved
+
+LINK MAP:
+
+DATE:      Sat May 24 08:17:46 2014
+PROCESSOR: assembler
+FILES:     C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\arch\z16\src\z16f_head.obj
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libsched.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libc.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libmm.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libarch.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libapps.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libfs.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libdrivers.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libbinfmt.lib
+           C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\arch\z16\src\board\libboard.lib
+           C:\PROGRA~2\ZiLOG\ZDSII_ZNEO_5.0.1\lib\std\chelpld.lib
+           C:\PROGRA~2\ZiLOG\ZDSII_ZNEO_5.0.1\lib\std\fpld.lib
+           
+
+
+COMMAND LIST:
+=============
+/****************************************************************************/
+/* configs/16z/ostest/ostest.linkcmd                                              */
+/*                                                                          */
+/*   Copyright (C) 2014 Gregory Nutt. All rights reserved.                  */
+/*   Author: Gregory Nutt <gnutt@nuttx.org>                                 */
+/*                                                                          */
+/* Redistribution and use in source and binary forms, with or without       */
+/* modification, are permitted provided that the following conditions       */
+/* are met:                                                                 */
+/*                                                                          */
+/* 1. Redistributions of source code must retain the above copyright        */
+/*    notice, this list of conditions and the following disclaimer.         */
+/* 2. Redistributions in binary form must reproduce the above copyright     */
+/*    notice, this list of conditions and the following disclaimer in       */
+/*    the documentation and/or other materials provided with the            */
+/*    distribution.                                                         */
+/* 3. Neither the name NuttX nor the names of its contributors may be       */
+/*    used to endorse or promote products derived from this software        */
+/*    without specific prior written permission.                            */
+/*                                                                          */
+/* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS      */
+/* "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT        */
+/* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS        */
+/* FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE           */
+/* COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,      */
+/* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,     */
+/* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS    */
+/* OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED       */
+/* AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT              */
+/* LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN        */
+/* ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE          */
+/* POSSIBILITY OF SUCH DAMAGE.                                              */
+/*                                                                          */
+/****************************************************************************/
+
+-FORMAT=OMF695,INTEL32
+-map -maxhexlen=64 -quiet -sort NAME=ascending -unresolved=fatal
+-warnoverlap -NOxref -warn -debug -NOigcase
+
+RANGE ROM    $000000 : $007FFF
+RANGE RAM    $FFB000 : $FFBFFF
+RANGE IODATA $FFC000 : $FFFFFF
+RANGE EROM   $008000 : $01FFFF
+RANGE ERAM   $020000 : $EFFFFF
+
+CHANGE NEAR_TEXT=NEAR_DATA
+CHANGE FAR_TEXT=FAR_DATA
+
+ORDER FAR_BSS,  FAR_DATA
+ORDER NEAR_BSS, NEAR_DATA
+COPY  NEAR_DATA EROM
+COPY  FAR_DATA  EROM
+
+define _0_exit             = 0
+define _low_near_romdata   = copy base of NEAR_DATA
+define _low_neardata       = base of NEAR_DATA
+define _len_neardata       = length of NEAR_DATA
+define _low_far_romdata    = copy base of FAR_DATA
+define _low_fardata        = base of FAR_DATA
+define _len_fardata        = length of FAR_DATA
+define _low_nearbss        = base of NEAR_BSS
+define _len_nearbss        = length of NEAR_BSS
+define _low_farbss         = base of FAR_BSS
+define _len_farbss         = length of FAR_BSS
+define _near_heaptop       = highaddr of RAM
+define _far_heaptop        = highaddr of ERAM
+define _far_stack          = highaddr of ERAM
+define _near_stack         = highaddr of RAM
+define _near_heapbot       = top of RAM
+define _far_heapbot        = top of ERAM
+
+define _SYS_CLK_SRC        = 1
+define _SYS_CLK_FREQ       = 18432000
+
+define __EXTCT_INIT_PARAM  = $40
+define __EXTCS0_INIT_PARAM = $9001
+define __EXTCS1_INIT_PARAM = $9001
+define __EXTCS2_INIT_PARAM = $9011
+define __EXTCS3_INIT_PARAM = $9015
+define __EXTCS4_INIT_PARAM = $9015
+define __EXTCS5_INIT_PARAM = $9015
+
+define __PFAF_INIT_PARAM   = $ff
+define __PGAF_INIT_PARAM   = $ff
+define __PDAF_INIT_PARAM   = $ff00
+define __PAAF_INIT_PARAM   = $0000
+define __PCAF_INIT_PARAM   = $0000
+define __PHAF_INIT_PARAM   = $0300
+define __PKAF_INIT_PARAM   = $0f
+
+/* arch/z16/src/Makefile will append target, object and library paths below */
+
+"C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\nuttx"=   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\arch\z16\src\z16f_head.obj",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libsched.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libc.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libmm.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libarch.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libapps.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libfs.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libdrivers.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\lib\libbinfmt.lib",   "C:\cygwin\home\patacongo\projects\nuttx\nuttx-git\nuttx\arch\z16\src\board\libboard.lib",   "C:\PROGRA~2\ZiLOG\ZDSII_ZNEO_5.0.1\lib\std\chelpld.lib",   "C:\PROGRA~2\ZiLOG\ZDSII_ZNEO_5.0.1\lib\std\fpld.lib"
+
+SPACE ALLOCATION:
+=================
+
+Space                     Base         Top      Size      Used    Unused
+------------------ ----------- ----------- --------- --------- ---------
+ERAM                  E:020000    E:020913   EE0000H      914H   EDF6ECH
+                                          ( 15597568      2324  15595244)
+EROM                  C:008000    C:00DDC6    18000H     5DC7H    12239H
+                                          (    98304     24007     74297)
+ROM                     T:0000      T:039C     8000H      399H     7C67H
+                                          (    32768       921     31847)
+
+
+SEGMENTS WITHIN SPACE:
+======================
+
+ERAM               Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+FAR_BSS            normal data            E:020000    E:0204BE      4bfh
+FAR_DATA           normal data            E:0204BF    E:020913      455h
+
+
+EROM               Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+CODE               normal data            C:0086B2    C:00D78F     50deh
+CODESEG            normal data            C:00D790    C:00D971      1e2h
+EROM_TEXT          normal data            C:008000    C:0086B1      6b2h
+FAR_DATA           * segment copy *       C:00D972    C:00DDC6      455h
+
+
+ROM                Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+__VECTORS_04       absolute data            T:0004      T:0007        4h
+__VECTORS_08       absolute data            T:0008      T:000B        4h
+__VECTORS_10       absolute data            T:0010      T:0013        4h
+__VECTORS_14       absolute data            T:0014      T:0017        4h
+__VECTORS_18       absolute data            T:0018      T:001B        4h
+__VECTORS_1C       absolute data            T:001C      T:001F        4h
+__VECTORS_20       absolute data            T:0020      T:0023        4h
+__VECTORS_24       absolute data            T:0024      T:0027        4h
+__VECTORS_28       absolute data            T:0028      T:002B        4h
+__VECTORS_2C       absolute data            T:002C      T:002F        4h
+__VECTORS_30       absolute data            T:0030      T:0033        4h
+__VECTORS_34       absolute data            T:0034      T:0037        4h
+__VECTORS_38       absolute data            T:0038      T:003B        4h
+__VECTORS_3C       absolute data            T:003C      T:003F        4h
+__VECTORS_40       absolute data            T:0040      T:0043        4h
+__VECTORS_44       absolute data            T:0044      T:0047        4h
+__VECTORS_48       absolute data            T:0048      T:004B        4h
+__VECTORS_4C       absolute data            T:004C      T:004F        4h
+__VECTORS_50       absolute data            T:0050      T:0053        4h
+__VECTORS_54       absolute data            T:0054      T:0057        4h
+__VECTORS_58       absolute data            T:0058      T:005B        4h
+__VECTORS_5C       absolute data            T:005C      T:005F        4h
+__VECTORS_60       absolute data            T:0060      T:0063        4h
+__VECTORS_64       absolute data            T:0064      T:0067        4h
+__VECTORS_68       absolute data            T:0068      T:006B        4h
+__VECTORS_6C       absolute data            T:006C      T:006F        4h
+FOPTIONSEG         absolute data            T:0000      T:0003        4h
+ROM_DATA           normal data              T:0070      T:039C      32dh
+
+SEGMENTS WITHIN MODULES:
+========================
+
+Module: .\CLOCK_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:34
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009176    C:0091BF       4ah
+    Segment: FAR_BSS                           E:0201AB    E:0201BA       10h
+
+
+Module: .\DEV_NULL.C (Library: libdrivers.lib) Version: 1:0 05/24/2014 08:04:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B694    C:00B6B1       1eh
+    Segment: FAR_DATA (was FAR_TEXT)           E:0205AB    E:0205B4        ah
+    Segment: ROM_DATA                            T:00BC      T:00D3       18h
+
+
+Module: .\ENV_DUP.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:17:05
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00BAFE    C:00BB67       6ah
+    Segment: EROM_TEXT                         C:008483    C:00848C        ah
+
+
+Module: .\ENV_RELEASE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:17:07
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C4F0    C:00C51B       2ch
+    Segment: EROM_TEXT                         C:008541    C:00854E        eh
+
+
+Module: .\ERRNO_GETPTR.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:11:49
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0091C0    C:0091E5       26h
+    Segment: FAR_BSS                           E:0201BB    E:0201BE        4h
+
+
+Module: .\EXIT.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:03
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008974    C:008991       1eh
+
+
+Module: .\FS_CLOSE.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:00:52
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C912    C:00C93B       2ah
+
+
+Module: .\FS_FDOPEN.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:57
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B880    C:00B9A9      12ah
+    Segment: EROM_TEXT                         C:008461    C:008478       18h
+
+
+Module: .\FS_FILEDUP2.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:01:10
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C93C    C:00C9A1       66h
+
+
+Module: .\FS_FILES.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:06
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009410    C:0096A7      298h
+    Segment: EROM_TEXT                         C:0080E5    C:008131       4dh
+
+
+Module: .\FS_INODE.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:13
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008F66    C:009155      1f0h
+    Segment: EROM_TEXT                         C:0080AB    C:0080CB       21h
+    Segment: FAR_BSS                           E:0201A5    E:0201AA        6h
+    Segment: FAR_DATA                          E:0204C9    E:0204CC        4h
+
+
+Module: .\FS_INODEADDREF.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:16
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B712    C:00B729       18h
+
+
+Module: .\FS_INODEFIND.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:22
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00BABE    C:00BAFD       40h
+
+
+Module: .\FS_INODERELEASE.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:25
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0096BE    C:0096FF       42h
+
+
+Module: .\FS_INODERESERVE.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:30
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C304    C:00C405      102h
+    Segment: EROM_TEXT                         C:00852F    C:008540       12h
+
+
+Module: .\FS_LSEEK.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:01:16
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D634    C:00D6F7       c4h
+    Segment: EROM_TEXT                         C:00868F    C:0086A4       16h
+
+
+Module: .\FS_OPEN.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:01:22
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B9B2    C:00BABD      10ch
+    Segment: EROM_TEXT                         C:008479    C:008482        ah
+
+
+Module: .\FS_REGISTERDRIVER.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:33
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009F42    C:009F89       48h
+
+
+Module: .\FS_WRITE.C (Library: libfs.lib) Version: 1:0 05/24/2014 08:02:03
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A392    C:00A41D       8ch
+
+
+Module: .\GETPID.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:06
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009700    C:009711       12h
+
+
+Module: .\GROUP_CREATE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:57
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A308    C:00A391       8ah
+    Segment: EROM_TEXT                         C:00825E    C:00827B       1eh
+
+
+Module: .\GROUP_LEAVE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:01
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0093A6    C:00940F       6ah
+    Segment: EROM_TEXT                         C:0080D7    C:0080E4        eh
+
+
+Module: .\GROUP_SETUPIDLEFILES.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:06
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C8B0    C:00C911       62h
+    Segment: EROM_TEXT                         C:008569    C:00858C       24h
+
+
+Module: .\GROUP_SETUPSTREAMS.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:05
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B46E    C:00B4B7       4ah
+    Segment: EROM_TEXT                         C:008401    C:008415       15h
+
+
+Module: .\GROUP_SETUPTASKFILES.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:08
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A998    C:00AA37       a0h
+    Segment: EROM_TEXT                         C:0082C8    C:00830C       45h
+
+
+Module: .\IRQ_ATTACH.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:28
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B608    C:00B64D       46h
+
+
+Module: .\IRQ_DISPATCH.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:30
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B6EE    C:00B711       24h
+
+
+Module: .\IRQ_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:27
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B64E    C:00B66D       20h
+    Segment: FAR_BSS                           E:0203C7    E:02042A       64h
+
+
+Module: .\IRQ_UNEXPECTEDISR.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:32
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B66E    C:00B693       26h
+    Segment: EROM_TEXT                         C:00842E    C:00844A       1dh
+
+
+Module: .\MM_ADDFREECHUNK.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:58:51
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0097B0    C:0097FB       4ch
+
+
+Module: .\MM_FREE.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:59:09
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008C70    C:008D65       f6h
+    Segment: EROM_TEXT                         C:00807B    C:00809A       20h
+
+
+Module: .\MM_INITIALIZE.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:58:47
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A010    C:00A0FD       eeh
+    Segment: EROM_TEXT                         C:0081F8    C:00822B       34h
+
+
+Module: .\MM_MAIN.C (Library: libapps.lib) Version: 1:0 05/24/2014 08:17:39
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00BB7C    C:00BFDF      464h
+    Segment: FAR_BSS                           E:02042B    E:0204BE       94h
+    Segment: FAR_DATA (was FAR_TEXT)           E:0205B5    E:020913      35fh
+    Segment: ROM_DATA                            T:00D4      T:0393      2c0h
+
+
+Module: .\MM_MALLINFO.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:59:12
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C13C    C:00C237       fch
+    Segment: EROM_TEXT                         C:00849B    C:00850A       70h
+
+
+Module: .\MM_MALLOC.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:58:57
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A6DA    C:00A7CB       f2h
+    Segment: EROM_TEXT                         C:00827C    C:0082BA       3fh
+
+
+Module: .\MM_MEMALIGN.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:59:06
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00BFFC    C:00C103      108h
+    Segment: EROM_TEXT                         C:00848D    C:00849A        eh
+
+
+Module: .\MM_REALLOC.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:59:04
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C51C    C:00C8AF      394h
+    Segment: EROM_TEXT                         C:00854F    C:008568       1ah
+
+
+Module: .\MM_SEM.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:58:49
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0098C4    C:0099AB       e8h
+    Segment: EROM_TEXT                         C:008161    C:00817B       1bh
+
+
+Module: .\MM_SHRINKCHUNK.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:58:55
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C25A    C:00C2F3       9ah
+    Segment: EROM_TEXT                         C:00851E    C:00852E       11h
+
+
+Module: .\MM_SIZE2NDX.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:58:53
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0097FC    C:009819       1eh
+
+
+Module: .\MM_USER.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:59:15
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009FD4    C:00A00F       3ch
+    Segment: FAR_BSS                           E:020253    E:020396      144h
+
+
+Module: .\MM_ZALLOC.C (Library: libmm.lib) Version: 1:0 05/24/2014 07:58:59
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D438    C:00D455       1eh
+
+
+Module: .\MQ_CLOSE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:32
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B4D0    C:00B573       a4h
+    Segment: EROM_TEXT                         C:008416    C:008420        bh
+
+
+Module: .\MQ_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:47
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AADA    C:00ABAB       d2h
+    Segment: FAR_BSS                           E:020397    E:0203C6       30h
+
+
+Module: .\MQ_MSGFREE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:53
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B596    C:00B607       72h
+    Segment: EROM_TEXT                         C:008421    C:00842D        dh
+
+
+Module: .\MQ_MSGQFREE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:55
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B574    C:00B595       22h
+
+
+Module: .\MQ_RECOVER.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:58
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AC14    C:00AC7D       6ah
+    Segment: EROM_TEXT                         C:008319    C:008332       1ah
+
+
+Module: .\MQ_RELEASE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:56
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B4B8    C:00B4CF       18h
+
+
+Module: .\MQ_WAITIRQ.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:17:00
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D1DE    C:00D261       84h
+    Segment: EROM_TEXT                         C:0085FF    C:008625       27h
+
+
+Module: .\OS_BRINGUP.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:11:46
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A7CC    C:00A7F9       2eh
+    Segment: EROM_TEXT                         C:0082BB    C:0082C7        dh
+    Segment: FAR_DATA (was FAR_TEXT)           E:0205A6    E:0205AA        5h
+
+
+Module: .\OS_START.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:11:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008A86    C:008C2F      1aah
+    Segment: EROM_TEXT                         C:00804F    C:00807A       2ch
+    Segment: FAR_BSS                           E:020000    E:020168      169h
+    Segment: FAR_DATA                          E:0204BF    E:0204C8        ah
+    Segment: ROM_DATA                            T:0070      T:009C       2dh
+
+
+Module: .\PTHREAD_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:15:35
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00ABAC    C:00AC13       68h
+
+
+Module: .\PTHREAD_RELEASE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:15:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B0B6    C:00B0E9       34h
+
+
+Module: .\SCHED_ADDBLOCKED.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:47
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0099AE    C:0099F3       46h
+    Segment: EROM_TEXT                         C:00817C    C:00818E       13h
+
+
+Module: .\SCHED_ADDPRIORITIZED.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0099F4    C:009A6F       7ch
+    Segment: EROM_TEXT                         C:00818F    C:0081A5       17h
+
+
+Module: .\SCHED_ADDREADYTORUN.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:40
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009C00    C:009C73       74h
+    Segment: EROM_TEXT                         C:0081D7    C:0081EC       16h
+
+
+Module: .\SCHED_FREE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:50
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AE3C    C:00AE81       46h
+
+
+Module: .\SCHED_GARBAGE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:11:51
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008C30    C:008C6F       40h
+
+
+Module: .\SCHED_GETFILES.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:11:54
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0096A8    C:0096BD       16h
+
+
+Module: .\SCHED_GETSTREAMS.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:11:58
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C238    C:00C259       22h
+    Segment: EROM_TEXT                         C:00850B    C:00851D       13h
+
+
+Module: .\SCHED_GETTCB.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:52
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B03C    C:00B05F       24h
+
+
+Module: .\SCHED_LOCK.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:32
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B00C    C:00B03B       30h
+    Segment: EROM_TEXT                         C:0083AE    C:0083BA        dh
+
+
+Module: .\SCHED_MERGEPENDING.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0089FC    C:008A85       8ah
+    Segment: EROM_TEXT                         C:00803A    C:00804E       15h
+
+
+Module: .\SCHED_PROCESSTIMER.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:50
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009B18    C:009B69       52h
+
+
+Module: .\SCHED_RELEASETCB.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:56
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A900    C:00A97B       7ch
+
+
+Module: .\SCHED_REMOVEBLOCKED.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:49
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00ACFC    C:00AD31       36h
+    Segment: EROM_TEXT                         C:00834B    C:008360       16h
+
+
+Module: .\SCHED_REMOVEREADYTORUN.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AE82    C:00AEBD       3ch
+    Segment: EROM_TEXT                         C:008384    C:00839C       19h
+
+
+Module: .\SCHED_SELF.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:37
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B9AA    C:00B9B1        8h
+
+
+Module: .\SCHED_UNLOCK.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:33
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AF66    C:00AFB5       50h
+
+
+Module: .\SEM_DESTROY.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:55
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008F28    C:008F45       1eh
+
+
+Module: .\SEM_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:54
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00981A    C:009827        eh
+    Segment: FAR_BSS                           E:020233    E:02023A        8h
+
+
+Module: .\SEM_POST.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:08
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0091E6    C:00924F       6ah
+    Segment: EROM_TEXT                         C:0080CC    C:0080D6        bh
+
+
+Module: .\SEM_TRYWAIT.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:05
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00ADDC    C:00AE3B       60h
+    Segment: EROM_TEXT                         C:008376    C:008383        eh
+
+
+Module: .\SEM_WAIT.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:03
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009828    C:0098C3       9ch
+    Segment: EROM_TEXT                         C:00814B    C:008160       16h
+
+
+Module: .\SEM_WAITIRQ.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:12
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D168    C:00D1B9       52h
+    Segment: EROM_TEXT                         C:0085F1    C:0085FE        eh
+
+
+Module: .\SIG_ACTION.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:15:54
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B30A    C:00B401       f8h
+    Segment: EROM_TEXT                         C:0083F4    C:008400        dh
+
+
+Module: .\SIG_ALLOCATEPENDINGSIGACTION.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:10
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D054    C:00D0C1       6eh
+
+
+Module: .\SIG_CLEANUP.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:24
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B23A    C:00B2A7       6eh
+
+
+Module: .\SIG_DELIVER.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:27
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D0C2    C:00D167       a6h
+
+
+Module: .\SIG_DISPATCH.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:25
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CD9E    C:00D053      2b6h
+    Segment: EROM_TEXT                         C:0085B5    C:0085F0       3ch
+
+
+Module: .\SIG_FINDACTION.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:09
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B402    C:00B42F       2eh
+
+
+Module: .\SIG_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:15:52
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008D66    C:008E8B      126h
+    Segment: FAR_BSS                           E:020169    E:0201A4       3ch
+
+
+Module: .\SIG_LOWEST.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:20
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D1BA    C:00D1DD       24h
+
+
+Module: .\SIG_PENDING.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:15:57
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CD20    C:00CD89       6ah
+    Segment: EROM_TEXT                         C:0085A7    C:0085B4        eh
+
+
+Module: .\SIG_PROCMASK.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:15:56
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CBE6    C:00CC53       6eh
+
+
+Module: .\SIG_RELEASEPENDINGSIGACTION.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:12
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B2A8    C:00B309       62h
+
+
+Module: .\SIG_RELEASEPENDINGSIGNAL.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:18
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C9BE    C:00CA1F       62h
+
+
+Module: .\SIG_REMOVEPENDINGSIGNAL.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:16
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CCB6    C:00CD1F       6ah
+    Segment: EROM_TEXT                         C:00858D    C:0085A6       1ah
+
+
+Module: .\SIG_UNMASKPENDINGSIGNAL.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:16:14
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CC54    C:00CCB5       62h
+
+
+Module: .\TASK_ACTIVATE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:15
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D416    C:00D437       22h
+
+
+Module: .\TASK_CREATE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:08
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A7FA    C:00A8FF      106h
+
+
+Module: .\TASK_EXIT.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:23
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0089AE    C:0089FB       4eh
+
+
+Module: .\TASK_EXITHOOK.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:25
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0092DA    C:009321       48h
+
+
+Module: .\TASK_RECOVER.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:28
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009322    C:00935D       3ch
+
+
+Module: .\TASK_SETUP.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:13
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CA9E    C:00CBE5      148h
+    Segment: ROM_DATA                            T:0394      T:039C        9h
+
+
+Module: .\TASK_START.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:18
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D742    C:00D78F       4eh
+    Segment: EROM_TEXT                         C:0086A5    C:0086B1        dh
+
+
+Module: .\TASK_TERMINATE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:12:37
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AEDC    C:00AF65       8ah
+    Segment: EROM_TEXT                         C:00839D    C:0083AD       11h
+
+
+Module: .\TIMER_DELETE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:18
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B72A    C:00B747       1eh
+
+
+Module: .\TIMER_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:14
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00925A    C:0092D9       80h
+    Segment: FAR_BSS                           E:0201BF    E:020232       74h
+
+
+Module: .\TIMER_RELEASE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:14:25
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B748    C:00B7C9       82h
+
+
+Module: .\WD_CANCEL.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AA38    C:00AAB9       82h
+    Segment: EROM_TEXT                         C:00830D    C:008318        ch
+
+
+Module: .\WD_DELETE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:47
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00935E    C:0093A5       48h
+
+
+Module: .\WD_INITIALIZE.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:39
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009EB2    C:009F03       52h
+    Segment: FAR_BSS                           E:02023F    E:020252       14h
+
+
+Module: .\WD_START.C (Library: libsched.lib) Version: 1:0 05/24/2014 08:13:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009C74    C:009EB1      23eh
+    Segment: EROM_TEXT                         C:0081ED    C:0081F7        bh
+
+
+Module: .\Z16F_LEDS.C (Library: libboard.lib) Version: 1:0 05/24/2014 08:05:52
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0087E4    C:008855       72h
+
+
+Module: .\Z16F_LOWINIT.C (Library: libboard.lib) Version: 1:0 05/24/2014 08:05:50
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C418    C:00C4EF       d8h
+
+
+Module: CHIP\Z16F_CLKINIT.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:25
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A1D2    C:00A307      136h
+
+
+Module: CHIP\Z16F_IRQ.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:29
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0086FC    C:0087E3       e8h
+
+
+Module: CHIP\Z16F_SERIAL.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:33
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00977C    C:0097AB       30h
+
+
+Module: CHIP\Z16F_SYSEXEC.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:27
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008856    C:008907       b2h
+    Segment: EROM_TEXT                         C:008000    C:008013       14h
+    Segment: FAR_DATA (was FAR_TEXT)           E:0204E7    E:02057C       96h
+
+
+Module: CHIP\Z16F_TIMERISR.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:31
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009AAA    C:009B17       6eh
+    Segment: EROM_TEXT                         C:0081A6    C:0081BA       15h
+
+
+Module: COMMON\UP_ALLOCATEHEAP.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:35
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009156    C:009175       20h
+
+
+Module: COMMON\UP_ASSERT.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:41
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008908    C:008973       6ch
+    Segment: EROM_TEXT                         C:008014    C:008039       26h
+
+
+Module: COMMON\UP_BLOCKTASK.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:46
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B7F4    C:00B87F       8ch
+    Segment: EROM_TEXT                         C:00844B    C:008460       16h
+
+
+Module: COMMON\UP_COPYSTATE.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:51
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B7E4    C:00B7F3       10h
+
+
+Module: COMMON\UP_CREATESTACK.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:57
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CA46    C:00CA9D       58h
+
+
+Module: COMMON\UP_DOIRQ.C (Library: libarch.lib) Version: 1:0 05/24/2014 08:00:02
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0086B2    C:0086FB       4ah
+
+
+Module: COMMON\UP_EXIT.C (Library: libarch.lib) Version: 1:0 05/24/2014 08:00:08
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008992    C:0089AD       1ch
+
+
+Module: COMMON\UP_IDLE.C (Library: libarch.lib) Version: 1:0 05/24/2014 08:00:12
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0099AC    C:0099AD        2h
+
+
+Module: COMMON\UP_INITIALIZE.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:37
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009A8C    C:009AA9       1eh
+    Segment: FAR_BSS                           E:02023B    E:02023E        4h
+
+
+Module: COMMON\UP_INITIALSTATE.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00ADAC    C:00ADDB       30h
+
+
+Module: COMMON\UP_INTERRUPTCONTEXT.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:48
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009250    C:009259        ah
+
+
+Module: COMMON\UP_MDELAY.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:53
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C9A2    C:00C9BD       1ch
+
+
+Module: COMMON\UP_RELEASEPENDING.C (Library: libarch.lib) Version: 1:0 05/24/2014 08:00:04
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AFB6    C:00B00B       56h
+
+
+Module: COMMON\UP_RELEASESTACK.C (Library: libarch.lib) Version: 1:0 05/24/2014 08:00:10
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A97C    C:00A997       1ch
+
+
+Module: COMMON\UP_REPRIORITIZERTR.C (Library: libarch.lib) Version: 1:0 05/24/2014 08:00:14
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009B6A    C:009BFF       96h
+    Segment: EROM_TEXT                         C:0081BB    C:0081D6       1ch
+
+
+Module: COMMON\UP_SCHEDULESIGACTION.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:39
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D28C    C:00D353       c8h
+    Segment: EROM_TEXT                         C:008626    C:00865E       39h
+
+
+Module: COMMON\UP_SIGDELIVER.C (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D354    C:00D3CD       7ah
+    Segment: EROM_TEXT                         C:00865F    C:008675       17h
+
+
+Module: COMMON\UP_UNBLOCKTASK.C (Library: libarch.lib) Version: 1:0 05/24/2014 08:00:00
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AC7E    C:00ACFB       7eh
+    Segment: EROM_TEXT                         C:008333    C:00834A       18h
+
+
+Module: MISC\LIB_DBG.C (Library: libc.lib) Version: 1:0 05/24/2014 07:58:24
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A0FE    C:00A135       38h
+
+
+Module: MISC\LIB_FILESEM.C (Library: libc.lib) Version: 1:0 05/24/2014 07:58:11
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B184    C:00B239       b6h
+    Segment: EROM_TEXT                         C:0083BB    C:0083F3       39h
+
+
+Module: MISC\LIB_INIT.C (Library: libc.lib) Version: 1:0 05/24/2014 07:58:08
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008E8C    C:008F27       9ch
+    Segment: EROM_TEXT                         C:00809B    C:0080AA       10h
+
+
+Module: MISC\LIB_STREAMSEM.C (Library: libc.lib) Version: 1:0 05/24/2014 07:58:15
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AD7C    C:00ADAB       30h
+    Segment: EROM_TEXT                         C:008361    C:008375       15h
+
+
+Module: QUEUE\DQ_ADDFIRST.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:54
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009A70    C:009A8B       1ch
+
+
+Module: QUEUE\DQ_ADDLAST.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:51
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B6B2    C:00B6D3       22h
+
+
+Module: QUEUE\DQ_REM.C (Library: libc.lib) Version: 1:0 05/24/2014 07:58:01
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CA20    C:00CA45       26h
+
+
+Module: QUEUE\SQ_ADDAFTER.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:36
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009F9A    C:009FBF       26h
+
+
+Module: QUEUE\SQ_ADDFIRST.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:34
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009F8A    C:009F99       10h
+
+
+Module: QUEUE\SQ_ADDLAST.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:31
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B6D4    C:00B6ED       1ah
+
+
+Module: QUEUE\SQ_REM.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:38
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B430    C:00B46D       3eh
+
+
+Module: QUEUE\SQ_REMAFTER.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:48
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AABA    C:00AAD9       20h
+
+
+Module: QUEUE\SQ_REMFIRST.C (Library: libc.lib) Version: 1:0 05/24/2014 07:57:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009FC0    C:009FD3       14h
+
+
+Module: SEMAPHORE\SEM_INIT.C (Library: libc.lib) Version: 1:0 05/24/2014 07:55:31
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:008F46    C:008F65       20h
+
+
+Module: SERIAL\LOWCONSOLE.C (Library: libdrivers.lib) Version: 1:0 05/24/2014 08:04:32
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009F04    C:009F41       3eh
+    Segment: FAR_DATA (was FAR_TEXT)           E:02057D    E:020589        dh
+    Segment: ROM_DATA                            T:009D      T:00B4       18h
+
+
+Module: SIGNAL\SIG_ADDSET.C (Library: libc.lib) Version: 1:0 05/24/2014 07:55:40
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00CD8A    C:00CD9D       14h
+
+
+Module: SIGNAL\SIG_DELSET.C (Library: libc.lib) Version: 1:0 05/24/2014 07:55:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D262    C:00D277       16h
+
+
+Module: SIGNAL\SIG_ISMEMBER.C (Library: libc.lib) Version: 1:0 05/24/2014 07:55:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D278    C:00D28B       14h
+
+
+Module: STDIO\LIB_FPRINTF.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:21
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C2F4    C:00C303       10h
+
+
+Module: STDIO\LIB_FPUTC.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:09
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D4D6    C:00D50D       38h
+
+
+Module: STDIO\LIB_FSEEK.C (Library: libc.lib) Version: 1:0 05/24/2014 07:51:30
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D5F8    C:00D633       3ch
+
+
+Module: STDIO\LIB_LIBFFLUSH.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:02
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B0EA    C:00B183       9ah
+
+
+Module: STDIO\LIB_LIBFLUSHALL.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:00
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AD32    C:00AD7B       4ah
+
+
+Module: STDIO\LIB_LIBFWRITE.C (Library: libc.lib) Version: 1:0 05/24/2014 07:51:55
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D50E    C:00D593       86h
+
+
+Module: STDIO\LIB_LIBNOFLUSH.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:39
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:0097AC    C:0097AF        4h
+
+
+Module: STDIO\LIB_LIBVSPRINTF.C (Library: libc.lib) Version: 1:0 05/24/2014 07:50:51
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A41E    C:00A6BF      2a2h
+    Segment: FAR_DATA (was FAR_TEXT)           E:02058A    E:0205A5       1ch
+    Segment: ROM_DATA                            T:00B5      T:00BB        7h
+
+
+Module: STDIO\LIB_LOWOUTSTREAM.C (Library: libc.lib) Version: 1:0 05/24/2014 07:51:04
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00973C    C:00977B       40h
+    Segment: EROM_TEXT                         C:008132    C:00814A       19h
+
+
+Module: STDIO\LIB_LOWSYSLOG.C (Library: libc.lib) Version: 1:0 05/24/2014 07:50:32
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:009712    C:00973B       2ah
+
+
+Module: STDIO\LIB_PRINTF.C (Library: libc.lib) Version: 1:0 05/24/2014 07:50:28
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00BFE0    C:00BFFB       1ch
+
+
+Module: STDIO\LIB_RAWOUTSTREAM.C (Library: libc.lib) Version: 1:0 05/24/2014 07:51:18
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A162    C:00A1D1       70h
+    Segment: EROM_TEXT                         C:00822C    C:00825D       32h
+
+
+Module: STDIO\LIB_RDFLUSH.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:05
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D594    C:00D5F7       64h
+
+
+Module: STDIO\LIB_STDOUTSTREAM.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:28
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D456    C:00D4D5       80h
+    Segment: EROM_TEXT                         C:008676    C:00868E       19h
+
+
+Module: STDIO\LIB_SYSLOG.C (Library: libc.lib) Version: 1:0 05/24/2014 07:50:30
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A136    C:00A161       2ch
+
+
+Module: STDIO\LIB_VFPRINTF.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:23
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C104    C:00C13B       38h
+
+
+Module: STDIO\LIB_WRFLUSH.C (Library: libc.lib) Version: 1:0 05/24/2014 07:52:07
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D6F8    C:00D713       1ch
+
+
+Module: STRING\LIB_MEMCPY.C (Library: libc.lib) Version: 1:0 05/24/2014 07:54:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00BB68    C:00BB7B       14h
+
+
+Module: STRING\LIB_MEMSET.C (Library: libc.lib) Version: 1:0 05/24/2014 07:53:39
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00C406    C:00C417       12h
+
+
+Module: STRING\LIB_STRCHR.C (Library: libc.lib) Version: 1:0 05/24/2014 07:53:59
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00A6C0    C:00A6D9       1ah
+
+
+Module: STRING\LIB_STRCPY.C (Library: libc.lib) Version: 1:0 05/24/2014 07:54:01
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D406    C:00D415       10h
+
+
+Module: STRING\LIB_STRDUP.C (Library: libc.lib) Version: 1:0 05/24/2014 07:54:08
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D3CE    C:00D3F7       2ah
+
+
+Module: STRING\LIB_STRLEN.C (Library: libc.lib) Version: 1:0 05/24/2014 07:54:13
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D3F8    C:00D405        eh
+
+
+Module: TIME\LIB_CALENDAR2UTC.C (Library: libc.lib) Version: 1:0 05/24/2014 07:56:28
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00AEBE    C:00AEDB       1eh
+
+
+Module: TIME\LIB_DAYSBEFOREMONTH.C (Library: libc.lib) Version: 1:0 05/24/2014 07:56:30
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B7CA    C:00B7E3       1ah
+    Segment: FAR_DATA                          E:0204CD    E:0204E6       1ah
+
+
+Module: TIME\LIB_ISLEAPYEAR.C (Library: libc.lib) Version: 1:0 05/24/2014 07:56:33
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00D714    C:00D741       2eh
+
+
+Module: TIME\LIB_MKTIME.C (Library: libc.lib) Version: 1:0 05/24/2014 07:56:19
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              C:00B060    C:00B0B5       56h
+
+
+Module: z16f_head.asm (File: z16f_head.obj) Version: 1:0 05/24/2014 08:05:48
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: __VECTORS_04                        T:0004      T:0007        4h
+    Segment: __VECTORS_08                        T:0008      T:000B        4h
+    Segment: __VECTORS_10                        T:0010      T:0013        4h
+    Segment: __VECTORS_14                        T:0014      T:0017        4h
+    Segment: __VECTORS_18                        T:0018      T:001B        4h
+    Segment: __VECTORS_1C                        T:001C      T:001F        4h
+    Segment: __VECTORS_20                        T:0020      T:0023        4h
+    Segment: __VECTORS_24                        T:0024      T:0027        4h
+    Segment: __VECTORS_28                        T:0028      T:002B        4h
+    Segment: __VECTORS_2C                        T:002C      T:002F        4h
+    Segment: __VECTORS_30                        T:0030      T:0033        4h
+    Segment: __VECTORS_34                        T:0034      T:0037        4h
+    Segment: __VECTORS_38                        T:0038      T:003B        4h
+    Segment: __VECTORS_3C                        T:003C      T:003F        4h
+    Segment: __VECTORS_40                        T:0040      T:0043        4h
+    Segment: __VECTORS_44                        T:0044      T:0047        4h
+    Segment: __VECTORS_48                        T:0048      T:004B        4h
+    Segment: __VECTORS_4C                        T:004C      T:004F        4h
+    Segment: __VECTORS_50                        T:0050      T:0053        4h
+    Segment: __VECTORS_54                        T:0054      T:0057        4h
+    Segment: __VECTORS_58                        T:0058      T:005B        4h
+    Segment: __VECTORS_5C                        T:005C      T:005F        4h
+    Segment: __VECTORS_60                        T:0060      T:0063        4h
+    Segment: __VECTORS_64                        T:0064      T:0067        4h
+    Segment: __VECTORS_68                        T:0068      T:006B        4h
+    Segment: __VECTORS_6C                        T:006C      T:006F        4h
+    Segment: CODESEG                           C:00D790    C:00D8E3      154h
+    Segment: FOPTIONSEG                          T:0000      T:0003        4h
+
+
+Module: z16f_lowuart.asm (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:20
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODESEG                           C:00D90C    C:00D935       2ah
+
+
+Module: z16f_restoreusercontext.asm (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:23
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODESEG                           C:00D8E4    C:00D90B       28h
+
+
+Module: z16f_saveusercontext.asm (Library: libarch.lib) Version: 1:0 05/24/2014 07:59:22
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODESEG                           C:00D936    C:00D971       3ch
+
+EXTERNAL DEFINITIONS:
+=====================
+
+Symbol                             Address   Module          Segment
+-------------------------------- ----------- --------------- --------------------------------
+_0_exit                             00000000 (User Defined)
+__exit                              C:008992 UP_EXIT         CODE                            
+__EXTCS0_INIT_PARAM                 00009001 (User Defined)
+__EXTCS1_INIT_PARAM                 00009001 (User Defined)
+__EXTCS2_INIT_PARAM                 00009011 (User Defined)
+__EXTCS3_INIT_PARAM                 00009015 (User Defined)
+__EXTCS4_INIT_PARAM                 00009015 (User Defined)
+__EXTCS5_INIT_PARAM                 00009015 (User Defined)
+__EXTCT_INIT_PARAM                  00000040 (User Defined)
+__PAAF_INIT_PARAM                   00000000 (User Defined)
+__PCAF_INIT_PARAM                   00000000 (User Defined)
+__PDAF_INIT_PARAM                   0000FF00 (User Defined)
+__PFAF_INIT_PARAM                   000000FF (User Defined)
+__PGAF_INIT_PARAM                   000000FF (User Defined)
+__PHAF_INIT_PARAM                   00000300 (User Defined)
+__PKAF_INIT_PARAM                   0000000F (User Defined)
+__VECTOR_04                           T:0000 z16f_head       __VECTORS_04                    
+__VECTOR_08                           T:0000 z16f_head       __VECTORS_08                    
+__VECTOR_10                           T:0000 z16f_head       __VECTORS_10                    
+__VECTOR_14                           T:0000 z16f_head       __VECTORS_14                    
+__VECTOR_18                           T:0000 z16f_head       __VECTORS_18                    
+__VECTOR_1C                           T:0000 z16f_head       __VECTORS_1C                    
+__VECTOR_20                           T:0000 z16f_head       __VECTORS_20                    
+__VECTOR_24                           T:0000 z16f_head       __VECTORS_24                    
+__VECTOR_28                           T:0000 z16f_head       __VECTORS_28                    
+__VECTOR_2C                           T:0000 z16f_head       __VECTORS_2C                    
+__VECTOR_30                           T:0000 z16f_head       __VECTORS_30                    
+__VECTOR_34                           T:0000 z16f_head       __VECTORS_34                    
+__VECTOR_38                           T:0000 z16f_head       __VECTORS_38                    
+__VECTOR_3C                           T:0000 z16f_head       __VECTORS_3C                    
+__VECTOR_40                           T:0000 z16f_head       __VECTORS_40                    
+__VECTOR_44                           T:0000 z16f_head       __VECTORS_44                    
+__VECTOR_48                           T:0000 z16f_head       __VECTORS_48                    
+__VECTOR_4C                           T:0000 z16f_head       __VECTORS_4C                    
+__VECTOR_50                           T:0000 z16f_head       __VECTORS_50                    
+__VECTOR_54                           T:0000 z16f_head       __VECTORS_54                    
+__VECTOR_58                           T:0000 z16f_head       __VECTORS_58                    
+__VECTOR_5C                           T:0000 z16f_head       __VECTORS_5C                    
+__VECTOR_60                           T:0000 z16f_head       __VECTORS_60                    
+__VECTOR_64                           T:0000 z16f_head       __VECTORS_64                    
+__VECTOR_68                           T:0000 z16f_head       __VECTORS_68                    
+__VECTOR_6C                           T:0000 z16f_head       __VECTORS_6C                    
+__VECTOR_adc                          T:0000 z16f_head       __VECTORS_2C                    
+__VECTOR_c0                           T:0000 z16f_head       __VECTORS_6C                    
+__VECTOR_c1                           T:0000 z16f_head       __VECTORS_68                    
+__VECTOR_c2                           T:0000 z16f_head       __VECTORS_64                    
+__VECTOR_c3                           T:0000 z16f_head       __VECTORS_60                    
+__VECTOR_i2c                          T:0000 z16f_head       __VECTORS_24                    
+__VECTOR_p0ad                         T:0000 z16f_head       __VECTORS_4C                    
+__VECTOR_p1ad                         T:0000 z16f_head       __VECTORS_48                    
+__VECTOR_p2ad                         T:0000 z16f_head       __VECTORS_44                    
+__VECTOR_p3ad                         T:0000 z16f_head       __VECTORS_40                    
+__VECTOR_p4ad                         T:0000 z16f_head       __VECTORS_3C                    
+__VECTOR_p5ad                         T:0000 z16f_head       __VECTORS_38                    
+__VECTOR_p6ad                         T:0000 z16f_head       __VECTORS_34                    
+__VECTOR_p7ad                         T:0000 z16f_head       __VECTORS_30                    
+__VECTOR_pwm_fault                    T:0000 z16f_head       __VECTORS_5C                    
+__VECTOR_pwm_timer                    T:0000 z16f_head       __VECTORS_50                    
+__VECTOR_reset                        T:0000 z16f_head       __VECTORS_04                    
+__VECTOR_spi                          T:0000 z16f_head       __VECTORS_28                    
+__VECTOR_sysexc                       T:0000 z16f_head       __VECTORS_08                    
+__VECTOR_timer0                       T:0000 z16f_head       __VECTORS_18                    
+__VECTOR_timer1                       T:0000 z16f_head       __VECTORS_14                    
+__VECTOR_timer2                       T:0000 z16f_head       __VECTORS_10                    
+__VECTOR_uart0_rx                     T:0000 z16f_head       __VECTORS_1C                    
+__VECTOR_uart0_tx                     T:0000 z16f_head       __VECTORS_20                    
+__VECTOR_uart1_rx                     T:0000 z16f_head       __VECTORS_54                    
+__VECTOR_uart1_tx                     T:0000 z16f_head       __VECTORS_58                    
+_board_led_initialize               C:0087E4 Z16F_LEDS       CODE                            
+_board_led_off                      C:008820 Z16F_LEDS       CODE                            
+_board_led_on                       C:0087E6 Z16F_LEDS       CODE                            
+_clock_calendar2utc                 C:00AEBE LIB_CALENDAR2UT CODE                            
+_clock_daysbeforemonth              C:00B7CA LIB_DAYSBEFOREM CODE                            
+_clock_initialize                   C:0091AE CLOCK_INITIALIZ CODE                            
+_clock_isleapyear                   C:00D714 LIB_ISLEAPYEAR  CODE                            
+_clock_timer                        C:0091B2 CLOCK_INITIALIZ CODE                            
+_close                              C:00C912 FS_CLOSE        CODE                            
+_current_regs                       E:02023B UP_INITIALIZE   FAR_BSS                         
+_dbg                                C:00A0FE LIB_DBG         CODE                            
+_devnull_register                   C:00B69C DEV_NULL        CODE                            
+_dq_addfirst                        C:009A70 DQ_ADDFIRST     CODE                            
+_dq_addlast                         C:00B6B2 DQ_ADDLAST      CODE                            
+_dq_rem                             C:00CA20 DQ_REM          CODE                            
+_dup2                               C:00C93C FS_FILEDUP2     CODE                            
+_env_dup                            C:00BAFE ENV_DUP         CODE                            
+_env_release                        C:00C4F0 ENV_RELEASE     CODE                            
+_exit                               C:008974 EXIT            CODE                            
+_far_heapbot                        00020913 (User Defined)
+_far_heaptop                        00EFFFFF (User Defined)
+_far_stack                          00EFFFFF (User Defined)
+_files_allocate                     C:009598 FS_FILES        CODE                            
+_files_close                        C:009606 FS_FILES        CODE                            
+_files_dup                          C:0094D4 FS_FILES        CODE                            
+_files_initialize                   C:009478 FS_FILES        CODE                            
+_files_initlist                     C:00947A FS_FILES        CODE                            
+_files_release                      C:009658 FS_FILES        CODE                            
+_files_releaselist                  C:00949E FS_FILES        CODE                            
+_fprintf                            C:00C2F4 LIB_FPRINTF     CODE                            
+_fputc                              C:00D4D6 LIB_FPUTC       CODE                            
+_free                               C:008D5A MM_FREE         CODE                            
+_fs_fdopen                          C:00B8C6 FS_FDOPEN       CODE                            
+_fs_initialize                      C:008FBE FS_INODE        CODE                            
+_fseek                              C:00D5F8 LIB_FSEEK       CODE                            
+_g_alloctimers                      E:02022B TIMER_INITIALIZ FAR_BSS                         
+_g_basetime                         E:0201B3 CLOCK_INITIALIZ FAR_BSS                         
+_g_daysbeforemonth                  E:0204CD LIB_DAYSBEFOREM FAR_DATA                        
+_g_delayed_kufree                   E:020038 OS_START        FAR_BSS                         
+_g_desfree                          E:0203AF MQ_INITIALIZE   FAR_BSS                         
+_g_freetimers                       E:020223 TIMER_INITIALIZ FAR_BSS                         
+_g_inactivetasks                    E:020030 OS_START        FAR_BSS                         
+_g_irqvector                        E:0203C7 IRQ_INITIALIZE  FAR_BSS                         
+_g_lastpid                          E:020040 OS_START        FAR_BSS                         
+_g_mmheap                           E:020253 MM_USER         FAR_BSS                         
+_g_msgfree                          E:02039F MQ_INITIALIZE   FAR_BSS                         
+_g_msgfreeirq                       E:0203A7 MQ_INITIALIZE   FAR_BSS                         
+_g_msgqueues                        E:020397 MQ_INITIALIZE   FAR_BSS                         
+_g_nsems                            E:020233 SEM_INITIALIZE  FAR_BSS                         
+_g_pendingtasks                     E:020008 OS_START        FAR_BSS                         
+_g_pidhash                          E:020042 OS_START        FAR_BSS                         
+_g_readytorun                       E:020000 OS_START        FAR_BSS                         
+_g_sigfreeaction                    E:020169 SIG_INITIALIZE  FAR_BSS                         
+_g_sigpendingaction                 E:020171 SIG_INITIALIZE  FAR_BSS                         
+_g_sigpendingirqaction              E:020179 SIG_INITIALIZE  FAR_BSS                         
+_g_sigpendingirqsignal              E:020189 SIG_INITIALIZE  FAR_BSS                         
+_g_sigpendingsignal                 E:020181 SIG_INITIALIZE  FAR_BSS                         
+_g_system_timer                     E:0201AB CLOCK_INITIALIZ FAR_BSS                         
+_g_tasklisttable                      T:0070 OS_START        ROM_DATA                        
+_g_tickbias                         E:0201AF CLOCK_INITIALIZ FAR_BSS                         
+_g_waitingformqnotempty             E:020020 OS_START        FAR_BSS                         
+_g_waitingformqnotfull              E:020028 OS_START        FAR_BSS                         
+_g_waitingforsemaphore              E:020010 OS_START        FAR_BSS                         
+_g_waitingforsignal                 E:020018 OS_START        FAR_BSS                         
+_g_wdactivelist                     E:02024B WD_INITIALIZE   FAR_BSS                         
+_g_wdfreelist                       E:02023F WD_INITIALIZE   FAR_BSS                         
+_g_wdpool                           E:020247 WD_INITIALIZE   FAR_BSS                         
+_get_errno_ptr                      C:0091C0 ERRNO_GETPTR    CODE                            
+_getpid                             C:009700 GETPID          CODE                            
+_group_allocate                     C:00A308 GROUP_CREATE    CODE                            
+_group_initialize                   C:00A366 GROUP_CREATE    CODE                            
+_group_leave                        C:0093DA GROUP_LEAVE     CODE                            
+_group_setupidlefiles               C:00C8B0 GROUP_SETUPIDLE CODE                            
+_group_setupstreams                 C:00B46E GROUP_SETUPSTRE CODE                            
+_group_setuptaskfiles               C:00A9F0 GROUP_SETUPTASK CODE                            
+_inode_addref                       C:00B712 FS_INODEADDREF  CODE                            
+_inode_checkflags                   C:00B9B2 FS_OPEN         CODE                            
+_inode_find                         C:00BABE FS_INODEFIND    CODE                            
+_inode_free                         C:00911E FS_INODE        CODE                            
+_inode_nextname                     C:00913A FS_INODE        CODE                            
+_inode_release                      C:0096BE FS_INODERELEASE CODE                            
+_inode_reserve                      C:00C37A FS_INODERESERVE CODE                            
+_inode_search                       C:00908C FS_INODE        CODE                            
+_inode_semgive                      C:009046 FS_INODE        CODE                            
+_inode_semtake                      C:008FE0 FS_INODE        CODE                            
+_irq_attach                         C:00B608 IRQ_ATTACH      CODE                            
+_irq_dispatch                       C:00B6EE IRQ_DISPATCH    CODE                            
+_irq_initialize                     C:00B64E IRQ_INITIALIZE  CODE                            
+_irq_unexpected_isr                 C:00B66E IRQ_UNEXPECTEDI CODE                            
+_kernel_thread                      C:00A8E8 TASK_CREATE     CODE                            
+_len_farbss                         000004BF (User Defined)
+_len_fardata                        00000455 (User Defined)
+_len_nearbss                        00000000 (User Defined)
+_len_neardata                       00000000 (User Defined)
+_lib_fflush                         C:00B0EA LIB_LIBFFLUSH   CODE                            
+_lib_flushall                       C:00AD32 LIB_LIBFLUSHALL CODE                            
+_lib_fwrite                         C:00D50E LIB_LIBFWRITE   CODE                            
+_lib_give_semaphore                 C:00B1E8 LIB_FILESEM     CODE                            
+_lib_initialize                     C:008E8C LIB_INIT        CODE                            
+_lib_lowoutstream                   C:009764 LIB_LOWOUTSTREA CODE                            
+_lib_noflush                        C:0097AC LIB_LIBNOFLUSH  CODE                            
+_lib_rawoutstream                   C:00A1B6 LIB_RAWOUTSTREA CODE                            
+_lib_rdflush                        C:00D594 LIB_RDFLUSH     CODE                            
+_lib_releaselist                    C:008EDC LIB_INIT        CODE                            
+_lib_sem_initialize                 C:00B184 LIB_FILESEM     CODE                            
+_lib_stdoutstream                   C:00D4A0 LIB_STDOUTSTREA CODE                            
+_lib_streaminit                     C:008E8E LIB_INIT        CODE                            
+_lib_take_semaphore                 C:00B1A2 LIB_FILESEM     CODE                            
+_lib_vsprintf                       C:00A596 LIB_LIBVSPRINTF CODE                            
+_lib_wrflush                        C:00D6F8 LIB_WRFLUSH     CODE                            
+_lldbg                              C:00A10C LIB_DBG         CODE                            
+_llvdbg                             C:00A128 LIB_DBG         CODE                            
+_low_far_romdata                    0000D972 (User Defined)
+_low_farbss                         00020000 (User Defined)
+_low_fardata                        000204BF (User Defined)
+_low_near_romdata                   00000000 (User Defined)
+_low_nearbss                        00000000 (User Defined)
+_low_neardata                       00000000 (User Defined)
+_lowconsole_init                    C:009F2C LOWCONSOLE      CODE                            
+_lowsyslog                          C:009730 LIB_LOWSYSLOG   CODE                            
+_lowvsyslog                         C:009712 LIB_LOWSYSLOG   CODE                            
+_lseek                              C:00D6B6 FS_LSEEK        CODE                            
+_mallinfo                           C:00C218 MM_MALLINFO     CODE                            
+_malloc                             C:00A7C0 MM_MALLOC       CODE                            
+_memalign                           C:00C0F4 MM_MEMALIGN     CODE                            
+_memcpy                             C:00BB68 LIB_MEMCPY      CODE                            
+_memset                             C:00C406 LIB_MEMSET      CODE                            
+_mktime                             C:00B060 LIB_MKTIME      CODE                            
+_mm_addfreechunk                    C:0097B0 MM_ADDFREECHUNK CODE                            
+_mm_addregion                       C:00A010 MM_INITIALIZE   CODE                            
+_mm_givesemaphore                   C:00995A MM_SEM          CODE                            
+_mm_initialize                      C:00A090 MM_INITIALIZE   CODE                            
+_mm_main                            C:00BF56 MM_MAIN         CODE                            
+_mm_seminitialize                   C:0098C4 MM_SEM          CODE                            
+_mm_shrinkchunk                     C:00C25A MM_SHRINKCHUNK  CODE                            
+_mm_size2ndx                        C:0097FC MM_SIZE2NDX     CODE                            
+_mm_takesemaphore                   C:009914 MM_SEM          CODE                            
+_mm_trysemaphore                    C:0098DE MM_SEM          CODE                            
+_mq_close                           C:00B4D0 MQ_CLOSE        CODE                            
+_mq_desblockalloc                   C:00AB6C MQ_INITIALIZE   CODE                            
+_mq_initialize                      C:00AB14 MQ_INITIALIZE   CODE                            
+_mq_msgfree                         C:00B596 MQ_MSGFREE      CODE                            
+_mq_msgqfree                        C:00B574 MQ_MSGQFREE     CODE                            
+_mq_recover                         C:00AC14 MQ_RECOVER      CODE                            
+_mq_release                         C:00B4B8 MQ_RELEASE      CODE                            
+_mq_waitirq                         C:00D1DE MQ_WAITIRQ      CODE                            
+_near_heapbot                       00FFAFFF (User Defined)
+_near_heaptop                       00FFBFFF (User Defined)
+_near_stack                         00FFBFFF (User Defined)
+_open                               C:00B9DC FS_OPEN         CODE                            
+_os_bringup                         C:00A7CC OS_BRINGUP      CODE                            
+_os_start                           C:008A86 OS_START        CODE                            
+_printf                             C:00BFE0 LIB_PRINTF      CODE                            
+_pthread_givesemaphore              C:00ABEA PTHREAD_INITIAL CODE                            
+_pthread_initialize                 C:00ABAC PTHREAD_INITIAL CODE                            
+_pthread_release                    C:00B0B6 PTHREAD_RELEASE CODE                            
+_pthread_schedsetup                 C:00CBDA TASK_SETUP      CODE                            
+_pthread_takesemaphore              C:00ABAE PTHREAD_INITIAL CODE                            
+_realloc                            C:00C8A0 MM_REALLOC      CODE                            
+_register_driver                    C:009F42 FS_REGISTERDRIV CODE                            
+_root_inode                         E:0204C9 FS_INODE        FAR_DATA                        
+_sched_addblocked                   C:0099AE SCHED_ADDBLOCKE CODE                            
+_sched_addprioritized               C:0099F4 SCHED_ADDPRIORI CODE                            
+_sched_addreadytorun                C:009C00 SCHED_ADDREADYT CODE                            
+_sched_garbagecollection            C:008C6C SCHED_GARBAGE   CODE                            
+_sched_getfiles                     C:0096A8 SCHED_GETFILES  CODE                            
+_sched_getstreams                   C:00C238 SCHED_GETSTREAM CODE                            
+_sched_gettcb                       C:00B03C SCHED_GETTCB    CODE                            
+_sched_lock                         C:00B00C SCHED_LOCK      CODE                            
+_sched_mergepending                 C:0089FC SCHED_MERGEPEND CODE                            
+_sched_process_timer                C:009B5E SCHED_PROCESSTI CODE                            
+_sched_releasetcb                   C:00A91C SCHED_RELEASETC CODE                            
+_sched_removeblocked                C:00ACFC SCHED_REMOVEBLO CODE                            
+_sched_removereadytorun             C:00AE82 SCHED_REMOVEREA CODE                            
+_sched_self                         C:00B9AA SCHED_SELF      CODE                            
+_sched_ufree                        C:00AE3C SCHED_FREE      CODE                            
+_sched_unlock                       C:00AF66 SCHED_UNLOCK    CODE                            
+_sem_destroy                        C:008F28 SEM_DESTROY     CODE                            
+_sem_init                           C:008F46 SEM_INIT        CODE                            
+_sem_initialize                     C:00981A SEM_INITIALIZE  CODE                            
+_sem_post                           C:0091E6 SEM_POST        CODE                            
+_sem_trywait                        C:00ADDC SEM_TRYWAIT     CODE                            
+_sem_wait                           C:009828 SEM_WAIT        CODE                            
+_sem_waitirq                        C:00D168 SEM_WAITIRQ     CODE                            
+_sig_allocateactionblock            C:008E5A SIG_INITIALIZE  CODE                            
+_sig_allocatependingsigaction       C:00D054 SIG_ALLOCATEPEN CODE                            
+_sig_cleanup                        C:00B23A SIG_CLEANUP     CODE                            
+_sig_deliver                        C:00D0C2 SIG_DELIVER     CODE                            
+_sig_dispatch                       C:00D03A SIG_DISPATCH    CODE                            
+_sig_findaction                     C:00B402 SIG_FINDACTION  CODE                            
+_sig_initialize                     C:008DD2 SIG_INITIALIZE  CODE                            
+_sig_lowest                         C:00D1BA SIG_LOWEST      CODE                            
+_sig_pendingset                     C:00CD3C SIG_PENDING     CODE                            
+_sig_release                        C:00B28C SIG_CLEANUP     CODE                            
+_sig_releaseaction                  C:00B3F6 SIG_ACTION      CODE                            
+_sig_releasependingsigaction        C:00B2A8 SIG_RELEASEPEND CODE                            
+_sig_releasependingsignal           C:00C9BE SIG_RELEASEPEND CODE                            
+_sig_removependingsignal            C:00CCB6 SIG_REMOVEPENDI CODE                            
+_sig_tcbdispatch                    C:00CF32 SIG_DISPATCH    CODE                            
+_sig_unmaskpendingsignal            C:00CC54 SIG_UNMASKPENDI CODE                            
+_sigaction                          C:00B342 SIG_ACTION      CODE                            
+_sigaddset                          C:00CD8A SIG_ADDSET      CODE                            
+_sigdelset                          C:00D262 SIG_DELSET      CODE                            
+_sigismember                        C:00D278 SIG_ISMEMBER    CODE                            
+_sigpending                         C:00CD20 SIG_PENDING     CODE                            
+_sigprocmask                        C:00CBE6 SIG_PROCMASK    CODE                            
+_sq_addafter                        C:009F9A SQ_ADDAFTER     CODE                            
+_sq_addfirst                        C:009F8A SQ_ADDFIRST     CODE                            
+_sq_addlast                         C:00B6D4 SQ_ADDLAST      CODE                            
+_sq_rem                             C:00B430 SQ_REM          CODE                            
+_sq_remafter                        C:00AABA SQ_REMAFTER     CODE                            
+_sq_remfirst                        C:009FC0 SQ_REMFIRST     CODE                            
+_strchr                             C:00A6C0 LIB_STRCHR      CODE                            
+_strcpy                             C:00D406 LIB_STRCPY      CODE                            
+_strdup                             C:00D3CE LIB_STRDUP      CODE                            
+_stream_semgive                     C:00ADA6 LIB_STREAMSEM   CODE                            
+_stream_semtake                     C:00AD7C LIB_STREAMSEM   CODE                            
+_strlen                             C:00D3F8 LIB_STRLEN      CODE                            
+_SYS_CLK_FREQ                       01194000 (User Defined)
+_SYS_CLK_SRC                        00000001 (User Defined)
+_syslog                             C:00A156 LIB_SYSLOG      CODE                            
+_task_activate                      C:00D416 TASK_ACTIVATE   CODE                            
+_task_argsetup                      C:00CBE0 TASK_SETUP      CODE                            
+_task_create                        C:00A8D0 TASK_CREATE     CODE                            
+_task_exit                          C:0089AE TASK_EXIT       CODE                            
+_task_exithook                      C:0092F2 TASK_EXITHOOK   CODE                            
+_task_recover                       C:009322 TASK_RECOVER    CODE                            
+_task_schedsetup                    C:00CBC2 TASK_SETUP      CODE                            
+_task_start                         C:00D742 TASK_START      CODE                            
+_task_terminate                     C:00AEDC TASK_TERMINATE  CODE                            
+_timer_delete                       C:00B72A TIMER_DELETE    CODE                            
+_timer_deleteall                    C:0092A0 TIMER_INITIALIZ CODE                            
+_timer_initialize                   C:00925A TIMER_INITIALIZ CODE                            
+_timer_release                      C:00B79A TIMER_RELEASE   CODE                            
+_umm_addregion                      C:009FE6 MM_USER         CODE                            
+_umm_givesemaphore                  C:00A004 MM_USER         CODE                            
+_umm_initialize                     C:009FD4 MM_USER         CODE                            
+_umm_trysemaphore                   C:009FF8 MM_USER         CODE                            
+_up_allocate_heap                   C:009156 UP_ALLOCATEHEAP CODE                            
+_up_assert                          C:008950 UP_ASSERT       CODE                            
+_up_block_task                      C:00B7F4 UP_BLOCKTASK    CODE                            
+_up_copystate                       C:00B7E4 UP_COPYSTATE    CODE                            
+_up_create_stack                    C:00CA46 UP_CREATESTACK  CODE                            
+_up_disable_irq                     C:00872A Z16F_IRQ        CODE                            
+_up_doirq                           C:0086B2 UP_DOIRQ        CODE                            
+_up_enable_irq                      C:008764 Z16F_IRQ        CODE                            
+_up_idle                            C:0099AC UP_IDLE         CODE                            
+_up_initial_state                   C:00ADAC UP_INITIALSTATE CODE                            
+_up_initialize                      C:009A8C UP_INITIALIZE   CODE                            
+_up_interrupt_context               C:009250 UP_INTERRUPTCON CODE                            
+_up_irqinitialize                   C:0086FC Z16F_IRQ        CODE                            
+_up_maskack_irq                     C:008798 Z16F_IRQ        CODE                            
+_up_mdelay                          C:00C9A2 UP_MDELAY       CODE                            
+_up_putc                            C:009796 Z16F_SERIAL     CODE                            
+_up_release_pending                 C:00AFB6 UP_RELEASEPENDI CODE                            
+_up_release_stack                   C:00A97C UP_RELEASESTACK CODE                            
+_up_reprioritize_rtr                C:009B6A UP_REPRIORITIZE CODE                            
+_up_restoreusercontext              C:00D8E4 z16f_restoreuse CODESEG                         
+_up_saveusercontext                 C:00D936 z16f_saveuserco CODESEG                         
+_up_schedule_sigaction              C:00D28C UP_SCHEDULESIGA CODE                            
+_up_sigdeliver                      C:00D354 UP_SIGDELIVER   CODE                            
+_up_timerinit                       C:009AB2 Z16F_TIMERISR   CODE                            
+_up_timerisr                        C:009AAA Z16F_TIMERISR   CODE                            
+_up_unblock_task                    C:00AC7E UP_UNBLOCKTASK  CODE                            
+_vdbg                               C:00A11A LIB_DBG         CODE                            
+_vfprintf                           C:00C104 LIB_VFPRINTF    CODE                            
+_vsyslog                            C:00A136 LIB_SYSLOG      CODE                            
+_wd_cancel                          C:00AA38 WD_CANCEL       CODE                            
+_wd_delete                          C:00935E WD_DELETE       CODE                            
+_wd_initialize                      C:009EB2 WD_INITIALIZE   CODE                            
+_wd_start                           C:009C74 WD_START        CODE                            
+_wd_timer                           C:009DBE WD_START        CODE                            
+_write                              C:00A3FA FS_WRITE        CODE                            
+_z16f_clkinit                       C:00A2F8 Z16F_CLKINIT    CODE                            
+_z16f_lowinit                       C:00C4EA Z16F_LOWINIT    CODE                            
+_z16f_lowuartinit                   C:00D90C z16f_lowuart    CODESEG                         
+_z16f_reset                         C:00D790 z16f_head       CODESEG                         
+_z16f_sysexec                       C:008856 Z16F_SYSEXEC    CODE                            
+_zalloc                             C:00D438 MM_ZALLOC       CODE                            
+
+347 external symbol(s).
+
+SYMBOL CROSS REFERENCE:
+=======================
+Name                              Use         Module
+--------------------------------- ----------- -------------------------
+_0_exit                           Defined     LINKER
+__exit                            Defined     COMMON\UP_EXIT.C
+                                  Referenced  .\EXIT.C
+__EXTCS0_INIT_PARAM               Defined     LINKER
+__EXTCS1_INIT_PARAM               Defined     LINKER
+__EXTCS2_INIT_PARAM               Defined     LINKER
+__EXTCS3_INIT_PARAM               Defined     LINKER
+__EXTCS4_INIT_PARAM               Defined     LINKER
+__EXTCS5_INIT_PARAM               Defined     LINKER
+__EXTCT_INIT_PARAM                Defined     LINKER
+__PAAF_INIT_PARAM                 Defined     LINKER
+__PCAF_INIT_PARAM                 Defined     LINKER
+__PDAF_INIT_PARAM                 Defined     LINKER
+__PFAF_INIT_PARAM                 Defined     LINKER
+__PGAF_INIT_PARAM                 Defined     LINKER
+__PHAF_INIT_PARAM                 Defined     LINKER
+__PKAF_INIT_PARAM                 Defined     LINKER
+__VECTOR_04                       Defined     z16f_head.asm
+__VECTOR_08                       Defined     z16f_head.asm
+__VECTOR_10                       Defined     z16f_head.asm
+__VECTOR_14                       Defined     z16f_head.asm
+__VECTOR_18                       Defined     z16f_head.asm
+__VECTOR_1C                       Defined     z16f_head.asm
+__VECTOR_20                       Defined     z16f_head.asm
+__VECTOR_24                       Defined     z16f_head.asm
+__VECTOR_28                       Defined     z16f_head.asm
+__VECTOR_2C                       Defined     z16f_head.asm
+__VECTOR_30                       Defined     z16f_head.asm
+__VECTOR_34                       Defined     z16f_head.asm
+__VECTOR_38                       Defined     z16f_head.asm
+__VECTOR_3C                       Defined     z16f_head.asm
+__VECTOR_40                       Defined     z16f_head.asm
+__VECTOR_44                       Defined     z16f_head.asm
+__VECTOR_48                       Defined     z16f_head.asm
+__VECTOR_4C                       Defined     z16f_head.asm
+__VECTOR_50                       Defined     z16f_head.asm
+__VECTOR_54                       Defined     z16f_head.asm
+__VECTOR_58                       Defined     z16f_head.asm
+__VECTOR_5C                       Defined     z16f_head.asm
+__VECTOR_60                       Defined     z16f_head.asm
+__VECTOR_64                       Defined     z16f_head.asm
+__VECTOR_68                       Defined     z16f_head.asm
+__VECTOR_6C                       Defined     z16f_head.asm
+__VECTOR_adc                      Defined     z16f_head.asm
+__VECTOR_c0                       Defined     z16f_head.asm
+__VECTOR_c1                       Defined     z16f_head.asm
+__VECTOR_c2                       Defined     z16f_head.asm
+__VECTOR_c3                       Defined     z16f_head.asm
+__VECTOR_i2c                      Defined     z16f_head.asm
+__VECTOR_p0ad                     Defined     z16f_head.asm
+__VECTOR_p1ad                     Defined     z16f_head.asm
+__VECTOR_p2ad                     Defined     z16f_head.asm
+__VECTOR_p3ad                     Defined     z16f_head.asm
+__VECTOR_p4ad                     Defined     z16f_head.asm
+__VECTOR_p5ad                     Defined     z16f_head.asm
+__VECTOR_p6ad                     Defined     z16f_head.asm
+__VECTOR_p7ad                     Defined     z16f_head.asm
+__VECTOR_pwm_fault                Defined     z16f_head.asm
+__VECTOR_pwm_timer                Defined     z16f_head.asm
+__VECTOR_reset                    Defined     z16f_head.asm
+__VECTOR_spi                      Defined     z16f_head.asm
+__VECTOR_sysexc                   Defined     z16f_head.asm
+__VECTOR_timer0                   Defined     z16f_head.asm
+__VECTOR_timer1                   Defined     z16f_head.asm
+__VECTOR_timer2                   Defined     z16f_head.asm
+__VECTOR_uart0_rx                 Defined     z16f_head.asm
+__VECTOR_uart0_tx                 Defined     z16f_head.asm
+__VECTOR_uart1_rx                 Defined     z16f_head.asm
+__VECTOR_uart1_tx                 Defined     z16f_head.asm
+_board_led_initialize             Defined     .\Z16F_LEDS.C
+                                  Referenced  z16f_head.asm
+_board_led_off                    Defined     .\Z16F_LEDS.C
+                                  Referenced  COMMON\UP_DOIRQ.C
+                                  Referenced  COMMON\UP_ASSERT.C
+                                  Referenced  COMMON\UP_SIGDELIVER.C
+_board_led_on                     Defined     .\Z16F_LEDS.C
+                                  Referenced  COMMON\UP_DOIRQ.C
+                                  Referenced  COMMON\UP_ASSERT.C
+                                  Referenced  COMMON\UP_ALLOCATEHEAP.C
+                                  Referenced  COMMON\UP_INITIALIZE.C
+                                  Referenced  COMMON\UP_CREATESTACK.C
+                                  Referenced  COMMON\UP_SIGDELIVER.C
+_clock_calendar2utc               Defined     TIME\LIB_CALENDAR2UTC.C
+                                  Referenced  .\CLOCK_INITIALIZE.C
+_clock_daysbeforemonth            Defined     TIME\LIB_DAYSBEFOREMONTH.C
+                                  Referenced  TIME\LIB_MKTIME.C
+_clock_initialize                 Defined     .\CLOCK_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_clock_isleapyear                 Defined     TIME\LIB_ISLEAPYEAR.C
+                                  Referenced  TIME\LIB_MKTIME.C
+_clock_timer                      Defined     .\CLOCK_INITIALIZE.C
+                                  Referenced  .\SCHED_PROCESSTIMER.C
+_close                            Defined     .\FS_CLOSE.C
+                                  Referenced  .\GROUP_SETUPIDLEFILES.C
+_current_regs                     Defined     COMMON\UP_INITIALIZE.C
+                                  Referenced  COMMON\UP_DOIRQ.C
+                                  Referenced  CHIP\Z16F_IRQ.C
+                                  Referenced  CHIP\Z16F_SYSEXEC.C
+                                  Referenced  COMMON\UP_INTERRUPTCONTEXT.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+                                  Referenced  COMMON\UP_RELEASEPENDING.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+                                  Referenced  COMMON\UP_SCHEDULESIGACTION.C
+_dbg                              Defined     MISC\LIB_DBG.C
+                                  Referenced  .\MM_MALLOC.C
+                                  Referenced  COMMON\UP_SCHEDULESIGACTION.C
+_devnull_register                 Defined     .\DEV_NULL.C
+                                  Referenced  COMMON\UP_INITIALIZE.C
+_dq_addfirst                      Defined     QUEUE\DQ_ADDFIRST.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  .\TASK_SETUP.C
+_dq_addlast                       Defined     QUEUE\DQ_ADDLAST.C
+                                  Referenced  .\SCHED_ADDBLOCKED.C
+_dq_rem                           Defined     QUEUE\DQ_REM.C
+                                  Referenced  .\TASK_CREATE.C
+                                  Referenced  .\SCHED_REMOVEBLOCKED.C
+                                  Referenced  .\SCHED_REMOVEREADYTORUN.C
+                                  Referenced  .\TASK_TERMINATE.C
+_dup2                             Defined     .\FS_FILEDUP2.C
+                                  Referenced  .\GROUP_SETUPIDLEFILES.C
+_env_dup                          Defined     .\ENV_DUP.C
+                                  Referenced  .\GROUP_CREATE.C
+_env_release                      Defined     .\ENV_RELEASE.C
+                                  Referenced  .\GROUP_LEAVE.C
+_exit                             Defined     .\EXIT.C
+                                  Referenced  COMMON\UP_ASSERT.C
+                                  Referenced  .\MM_MAIN.C
+                                  Referenced  .\TASK_START.C
+_far_heapbot                      Defined     LINKER
+                                  Referenced  COMMON\UP_ALLOCATEHEAP.C
+_far_heaptop                      Defined     LINKER
+                                  Referenced  COMMON\UP_ALLOCATEHEAP.C
+_far_stack                        Defined     LINKER
+_files_allocate                   Defined     .\FS_FILES.C
+                                  Referenced  .\FS_OPEN.C
+_files_close                      Defined     .\FS_FILES.C
+                                  Referenced  .\FS_CLOSE.C
+_files_dup                        Defined     .\FS_FILES.C
+                                  Referenced  .\GROUP_SETUPTASKFILES.C
+                                  Referenced  .\FS_FILEDUP2.C
+_files_initialize                 Defined     .\FS_FILES.C
+                                  Referenced  .\FS_INODE.C
+_files_initlist                   Defined     .\FS_FILES.C
+                                  Referenced  .\GROUP_SETUPTASKFILES.C
+                                  Referenced  .\GROUP_SETUPIDLEFILES.C
+_files_release                    Defined     .\FS_FILES.C
+                                  Referenced  .\FS_OPEN.C
+_files_releaselist                Defined     .\FS_FILES.C
+                                  Referenced  .\GROUP_LEAVE.C
+_fprintf                          Defined     STDIO\LIB_FPRINTF.C
+                                  Referenced  .\MM_MAIN.C
+_fputc                            Defined     STDIO\LIB_FPUTC.C
+                                  Referenced  STDIO\LIB_STDOUTSTREAM.C
+_free                             Defined     .\MM_FREE.C
+                                  Referenced  .\SCHED_GARBAGE.C
+                                  Referenced  .\FS_INODE.C
+                                  Referenced  .\FS_INODERELEASE.C
+                                  Referenced  .\GROUP_CREATE.C
+                                  Referenced  .\SCHED_FREE.C
+                                  Referenced  .\MM_MAIN.C
+                                  Referenced  .\MM_REALLOC.C
+_fs_fdopen                        Defined     .\FS_FDOPEN.C
+                                  Referenced  .\GROUP_SETUPSTREAMS.C
+_fs_initialize                    Defined     .\FS_INODE.C
+                                  Referenced  .\OS_START.C
+_fseek                            Defined     STDIO\LIB_FSEEK.C
+                                  Referenced  STDIO\LIB_RDFLUSH.C
+_g_alloctimers                    Defined     .\TIMER_INITIALIZE.C
+                                  Referenced  .\TIMER_RELEASE.C
+_g_basetime                       Defined     .\CLOCK_INITIALIZE.C
+_g_daysbeforemonth                Defined     TIME\LIB_DAYSBEFOREMONTH.C
+_g_delayed_kufree                 Defined     .\OS_START.C
+                                  Referenced  .\SCHED_GARBAGE.C
+                                  Referenced  .\SCHED_FREE.C
+_g_desfree                        Defined     .\MQ_INITIALIZE.C
+                                  Referenced  .\MQ_CLOSE.C
+_g_freetimers                     Defined     .\TIMER_INITIALIZE.C
+                                  Referenced  .\TIMER_RELEASE.C
+_g_inactivetasks                  Defined     .\OS_START.C
+                                  Referenced  .\TASK_CREATE.C
+                                  Referenced  .\TASK_SETUP.C
+_g_irqvector                      Defined     .\IRQ_INITIALIZE.C
+                                  Referenced  .\IRQ_ATTACH.C
+                                  Referenced  .\IRQ_DISPATCH.C
+_g_lastpid                        Defined     .\OS_START.C
+                                  Referenced  .\TASK_SETUP.C
+_g_mmheap                         Defined     .\MM_USER.C
+                                  Referenced  .\MM_FREE.C
+                                  Referenced  .\MM_MALLOC.C
+                                  Referenced  .\MM_MEMALIGN.C
+                                  Referenced  .\MM_MALLINFO.C
+                                  Referenced  .\MM_REALLOC.C
+_g_msgfree                        Defined     .\MQ_INITIALIZE.C
+                                  Referenced  .\MQ_MSGFREE.C
+_g_msgfreeirq                     Defined     .\MQ_INITIALIZE.C
+                                  Referenced  .\MQ_MSGFREE.C
+_g_msgqueues                      Defined     .\MQ_INITIALIZE.C
+                                  Referenced  .\MQ_CLOSE.C
+_g_nsems                          Defined     .\SEM_INITIALIZE.C
+_g_pendingtasks                   Defined     .\OS_START.C
+                                  Referenced  .\TASK_EXIT.C
+                                  Referenced  .\SCHED_MERGEPENDING.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  .\SCHED_ADDREADYTORUN.C
+                                  Referenced  .\SCHED_UNLOCK.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+_g_pidhash                        Defined     .\OS_START.C
+                                  Referenced  .\SCHED_RELEASETCB.C
+                                  Referenced  .\SCHED_GETTCB.C
+                                  Referenced  .\TASK_SETUP.C
+_g_readytorun                     Defined     .\OS_START.C
+                                  Referenced  COMMON\UP_ASSERT.C
+                                  Referenced  .\EXIT.C
+                                  Referenced  COMMON\UP_EXIT.C
+                                  Referenced  .\TASK_EXIT.C
+                                  Referenced  .\SCHED_MERGEPENDING.C
+                                  Referenced  .\ERRNO_GETPTR.C
+                                  Referenced  .\SCHED_GETFILES.C
+                                  Referenced  .\GETPID.C
+                                  Referenced  .\SEM_WAIT.C
+                                  Referenced  .\SCHED_PROCESSTIMER.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  .\SCHED_ADDREADYTORUN.C
+                                  Referenced  .\GROUP_SETUPTASKFILES.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+                                  Referenced  .\SEM_TRYWAIT.C
+                                  Referenced  .\SCHED_REMOVEREADYTORUN.C
+                                  Referenced  .\SCHED_UNLOCK.C
+                                  Referenced  COMMON\UP_RELEASEPENDING.C
+                                  Referenced  .\SCHED_LOCK.C
+                                  Referenced  .\SIG_ACTION.C
+                                  Referenced  .\MQ_CLOSE.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+                                  Referenced  .\SCHED_SELF.C
+                                  Referenced  .\ENV_DUP.C
+                                  Referenced  .\SCHED_GETSTREAMS.C
+                                  Referenced  .\SIG_PROCMASK.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+                                  Referenced  .\SIG_PENDING.C
+                                  Referenced  COMMON\UP_SCHEDULESIGACTION.C
+                                  Referenced  COMMON\UP_SIGDELIVER.C
+                                  Referenced  .\TASK_START.C
+_g_sigfreeaction                  Defined     .\SIG_INITIALIZE.C
+                                  Referenced  .\SIG_ACTION.C
+_g_sigpendingaction               Defined     .\SIG_INITIALIZE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGACTION.C
+                                  Referenced  .\SIG_ALLOCATEPENDINGSIGACTION.C
+_g_sigpendingirqaction            Defined     .\SIG_INITIALIZE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGACTION.C
+                                  Referenced  .\SIG_ALLOCATEPENDINGSIGACTION.C
+_g_sigpendingirqsignal            Defined     .\SIG_INITIALIZE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGNAL.C
+                                  Referenced  .\SIG_DISPATCH.C
+_g_sigpendingsignal               Defined     .\SIG_INITIALIZE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGNAL.C
+                                  Referenced  .\SIG_DISPATCH.C
+_g_system_timer                   Defined     .\CLOCK_INITIALIZE.C
+_g_tasklisttable                  Defined     .\OS_START.C
+                                  Referenced  .\SCHED_ADDBLOCKED.C
+                                  Referenced  .\SCHED_REMOVEBLOCKED.C
+                                  Referenced  .\TASK_TERMINATE.C
+_g_tickbias                       Defined     .\CLOCK_INITIALIZE.C
+_g_waitingformqnotempty           Defined     .\OS_START.C
+_g_waitingformqnotfull            Defined     .\OS_START.C
+_g_waitingforsemaphore            Defined     .\OS_START.C
+                                  Referenced  .\SEM_POST.C
+_g_waitingforsignal               Defined     .\OS_START.C
+_g_wdactivelist                   Defined     .\WD_INITIALIZE.C
+                                  Referenced  .\WD_START.C
+                                  Referenced  .\WD_CANCEL.C
+_g_wdfreelist                     Defined     .\WD_INITIALIZE.C
+                                  Referenced  .\WD_DELETE.C
+_g_wdpool                         Defined     .\WD_INITIALIZE.C
+_get_errno_ptr                    Defined     .\ERRNO_GETPTR.C
+                                  Referenced  .\SEM_DESTROY.C
+                                  Referenced  SEMAPHORE\SEM_INIT.C
+                                  Referenced  .\FS_INODE.C
+                                  Referenced  .\WD_DELETE.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  .\SEM_WAIT.C
+                                  Referenced  .\MM_SEM.C
+                                  Referenced  .\WD_START.C
+                                  Referenced  STDIO\LIB_RAWOUTSTREAM.C
+                                  Referenced  .\FS_WRITE.C
+                                  Referenced  .\TASK_CREATE.C
+                                  Referenced  .\PTHREAD_INITIALIZE.C
+                                  Referenced  MISC\LIB_STREAMSEM.C
+                                  Referenced  .\SEM_TRYWAIT.C
+                                  Referenced  STDIO\LIB_LIBFFLUSH.C
+                                  Referenced  MISC\LIB_FILESEM.C
+                                  Referenced  .\SIG_ACTION.C
+                                  Referenced  .\TIMER_DELETE.C
+                                  Referenced  .\FS_FDOPEN.C
+                                  Referenced  .\FS_OPEN.C
+                                  Referenced  .\GROUP_SETUPIDLEFILES.C
+                                  Referenced  .\FS_CLOSE.C
+                                  Referenced  .\FS_FILEDUP2.C
+                                  Referenced  STDIO\LIB_STDOUTSTREAM.C
+                                  Referenced  STDIO\LIB_LIBFWRITE.C
+                                  Referenced  STDIO\LIB_RDFLUSH.C
+                                  Referenced  .\FS_LSEEK.C
+_getpid                           Defined     .\GETPID.C
+                                  Referenced  .\FS_INODE.C
+                                  Referenced  .\MM_SEM.C
+                                  Referenced  MISC\LIB_FILESEM.C
+_group_allocate                   Defined     .\GROUP_CREATE.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  .\TASK_CREATE.C
+_group_initialize                 Defined     .\GROUP_CREATE.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  .\TASK_CREATE.C
+_group_leave                      Defined     .\GROUP_LEAVE.C
+                                  Referenced  .\TASK_EXITHOOK.C
+                                  Referenced  .\SCHED_RELEASETCB.C
+_group_setupidlefiles             Defined     .\GROUP_SETUPIDLEFILES.C
+                                  Referenced  .\OS_START.C
+_group_setupstreams               Defined     .\GROUP_SETUPSTREAMS.C
+                                  Referenced  .\GROUP_SETUPTASKFILES.C
+                                  Referenced  .\GROUP_SETUPIDLEFILES.C
+_group_setuptaskfiles             Defined     .\GROUP_SETUPTASKFILES.C
+                                  Referenced  .\TASK_CREATE.C
+_inode_addref                     Defined     .\FS_INODEADDREF.C
+                                  Referenced  .\FS_FILES.C
+_inode_checkflags                 Defined     .\FS_OPEN.C
+                                  Referenced  .\FS_FDOPEN.C
+_inode_find                       Defined     .\FS_INODEFIND.C
+                                  Referenced  .\FS_OPEN.C
+_inode_free                       Defined     .\FS_INODE.C
+                                  Referenced  .\FS_INODERELEASE.C
+_inode_nextname                   Defined     .\FS_INODE.C
+                                  Referenced  .\FS_INODERESERVE.C
+_inode_release                    Defined     .\FS_INODERELEASE.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  .\FS_OPEN.C
+_inode_reserve                    Defined     .\FS_INODERESERVE.C
+                                  Referenced  .\FS_REGISTERDRIVER.C
+_inode_search                     Defined     .\FS_INODE.C
+                                  Referenced  .\FS_INODEFIND.C
+                                  Referenced  .\FS_INODERESERVE.C
+_inode_semgive                    Defined     .\FS_INODE.C
+                                  Referenced  .\FS_INODERELEASE.C
+                                  Referenced  .\FS_REGISTERDRIVER.C
+                                  Referenced  .\FS_INODEADDREF.C
+                                  Referenced  .\FS_INODEFIND.C
+_inode_semtake                    Defined     .\FS_INODE.C
+                                  Referenced  .\FS_INODERELEASE.C
+                                  Referenced  .\FS_REGISTERDRIVER.C
+                                  Referenced  .\FS_INODEADDREF.C
+                                  Referenced  .\FS_INODEFIND.C
+_irq_attach                       Defined     .\IRQ_ATTACH.C
+                                  Referenced  CHIP\Z16F_TIMERISR.C
+_irq_dispatch                     Defined     .\IRQ_DISPATCH.C
+                                  Referenced  COMMON\UP_DOIRQ.C
+_irq_initialize                   Defined     .\IRQ_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_irq_unexpected_isr               Defined     .\IRQ_UNEXPECTEDISR.C
+                                  Referenced  .\IRQ_ATTACH.C
+                                  Referenced  .\IRQ_INITIALIZE.C
+                                  Referenced  .\IRQ_DISPATCH.C
+_kernel_thread                    Defined     .\TASK_CREATE.C
+_len_farbss                       Defined     LINKER
+                                  Referenced  z16f_head.asm
+_len_fardata                      Defined     LINKER
+                                  Referenced  z16f_head.asm
+_len_nearbss                      Defined     LINKER
+                                  Referenced  z16f_head.asm
+_len_neardata                     Defined     LINKER
+                                  Referenced  z16f_head.asm
+_lib_fflush                       Defined     STDIO\LIB_LIBFFLUSH.C
+                                  Referenced  STDIO\LIB_LIBFLUSHALL.C
+                                  Referenced  STDIO\LIB_STDOUTSTREAM.C
+                                  Referenced  STDIO\LIB_FPUTC.C
+                                  Referenced  STDIO\LIB_LIBFWRITE.C
+                                  Referenced  STDIO\LIB_WRFLUSH.C
+_lib_flushall                     Defined     STDIO\LIB_LIBFLUSHALL.C
+                                  Referenced  .\TASK_EXITHOOK.C
+_lib_fwrite                       Defined     STDIO\LIB_LIBFWRITE.C
+                                  Referenced  STDIO\LIB_FPUTC.C
+_lib_give_semaphore               Defined     MISC\LIB_FILESEM.C
+                                  Referenced  STDIO\LIB_LIBFFLUSH.C
+                                  Referenced  STDIO\LIB_VFPRINTF.C
+                                  Referenced  STDIO\LIB_LIBFWRITE.C
+                                  Referenced  STDIO\LIB_RDFLUSH.C
+_lib_initialize                   Defined     MISC\LIB_INIT.C
+                                  Referenced  .\OS_START.C
+_lib_lowoutstream                 Defined     STDIO\LIB_LOWOUTSTREAM.C
+                                  Referenced  STDIO\LIB_LOWSYSLOG.C
+_lib_noflush                      Defined     STDIO\LIB_LIBNOFLUSH.C
+                                  Referenced  STDIO\LIB_LOWOUTSTREAM.C
+                                  Referenced  STDIO\LIB_RAWOUTSTREAM.C
+                                  Referenced  STDIO\LIB_STDOUTSTREAM.C
+_lib_rawoutstream                 Defined     STDIO\LIB_RAWOUTSTREAM.C
+                                  Referenced  STDIO\LIB_SYSLOG.C
+_lib_rdflush                      Defined     STDIO\LIB_RDFLUSH.C
+                                  Referenced  STDIO\LIB_LIBFWRITE.C
+                                  Referenced  STDIO\LIB_FSEEK.C
+_lib_releaselist                  Defined     MISC\LIB_INIT.C
+                                  Referenced  .\GROUP_LEAVE.C
+_lib_sem_initialize               Defined     MISC\LIB_FILESEM.C
+                                  Referenced  MISC\LIB_INIT.C
+_lib_stdoutstream                 Defined     STDIO\LIB_STDOUTSTREAM.C
+                                  Referenced  STDIO\LIB_VFPRINTF.C
+_lib_streaminit                   Defined     MISC\LIB_INIT.C
+                                  Referenced  .\GROUP_SETUPSTREAMS.C
+_lib_take_semaphore               Defined     MISC\LIB_FILESEM.C
+                                  Referenced  STDIO\LIB_LIBFFLUSH.C
+                                  Referenced  STDIO\LIB_VFPRINTF.C
+                                  Referenced  STDIO\LIB_LIBFWRITE.C
+                                  Referenced  STDIO\LIB_RDFLUSH.C
+_lib_vsprintf                     Defined     STDIO\LIB_LIBVSPRINTF.C
+                                  Referenced  STDIO\LIB_LOWSYSLOG.C
+                                  Referenced  STDIO\LIB_SYSLOG.C
+                                  Referenced  STDIO\LIB_VFPRINTF.C
+_lib_wrflush                      Defined     STDIO\LIB_WRFLUSH.C
+                                  Referenced  STDIO\LIB_FSEEK.C
+_lldbg                            Defined     MISC\LIB_DBG.C
+                                  Referenced  COMMON\UP_ASSERT.C
+                                  Referenced  .\MM_INITIALIZE.C
+                                  Referenced  .\IRQ_UNEXPECTEDISR.C
+_llvdbg                           Defined     MISC\LIB_DBG.C
+_low_far_romdata                  Defined     LINKER
+                                  Referenced  z16f_head.asm
+_low_farbss                       Defined     LINKER
+                                  Referenced  z16f_head.asm
+_low_fardata                      Defined     LINKER
+                                  Referenced  z16f_head.asm
+_low_near_romdata                 Defined     LINKER
+                                  Referenced  z16f_head.asm
+_low_nearbss                      Defined     LINKER
+                                  Referenced  z16f_head.asm
+_low_neardata                     Defined     LINKER
+                                  Referenced  z16f_head.asm
+_lowconsole_init                  Defined     SERIAL\LOWCONSOLE.C
+                                  Referenced  COMMON\UP_INITIALIZE.C
+_lowsyslog                        Defined     STDIO\LIB_LOWSYSLOG.C
+                                  Referenced  CHIP\Z16F_SYSEXEC.C
+_lowvsyslog                       Defined     STDIO\LIB_LOWSYSLOG.C
+                                  Referenced  MISC\LIB_DBG.C
+_lseek                            Defined     .\FS_LSEEK.C
+                                  Referenced  STDIO\LIB_FSEEK.C
+_mallinfo                         Defined     .\MM_MALLINFO.C
+                                  Referenced  .\MM_MAIN.C
+_malloc                           Defined     .\MM_MALLOC.C
+                                  Referenced  .\SIG_INITIALIZE.C
+                                  Referenced  .\WD_INITIALIZE.C
+                                  Referenced  .\MQ_INITIALIZE.C
+                                  Referenced  .\FS_FDOPEN.C
+                                  Referenced  .\ENV_DUP.C
+                                  Referenced  .\MM_MAIN.C
+                                  Referenced  .\MM_MEMALIGN.C
+                                  Referenced  .\MM_REALLOC.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_ALLOCATEPENDINGSIGACTION.C
+                                  Referenced  STRING\LIB_STRDUP.C
+                                  Referenced  .\MM_ZALLOC.C
+_memalign                         Defined     .\MM_MEMALIGN.C
+                                  Referenced  .\MM_MAIN.C
+_memcpy                           Defined     STRING\LIB_MEMCPY.C
+                                  Referenced  .\ENV_DUP.C
+                                  Referenced  .\MM_REALLOC.C
+                                  Referenced  .\SIG_DISPATCH.C
+_memset                           Defined     STRING\LIB_MEMSET.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  MISC\LIB_INIT.C
+                                  Referenced  .\MM_INITIALIZE.C
+                                  Referenced  COMMON\UP_INITIALSTATE.C
+                                  Referenced  .\FS_FDOPEN.C
+                                  Referenced  .\MM_MAIN.C
+                                  Referenced  .\MM_ZALLOC.C
+_mktime                           Defined     TIME\LIB_MKTIME.C
+                                  Referenced  TIME\LIB_CALENDAR2UTC.C
+_mm_addfreechunk                  Defined     .\MM_ADDFREECHUNK.C
+                                  Referenced  .\MM_FREE.C
+                                  Referenced  .\MM_INITIALIZE.C
+                                  Referenced  .\MM_MALLOC.C
+                                  Referenced  .\MM_MEMALIGN.C
+                                  Referenced  .\MM_SHRINKCHUNK.C
+                                  Referenced  .\MM_REALLOC.C
+_mm_addregion                     Defined     .\MM_INITIALIZE.C
+                                  Referenced  .\MM_USER.C
+_mm_givesemaphore                 Defined     .\MM_SEM.C
+                                  Referenced  .\MM_FREE.C
+                                  Referenced  .\MM_USER.C
+                                  Referenced  .\MM_MALLOC.C
+                                  Referenced  .\MM_MEMALIGN.C
+                                  Referenced  .\MM_MALLINFO.C
+                                  Referenced  .\MM_REALLOC.C
+_mm_initialize                    Defined     .\MM_INITIALIZE.C
+                                  Referenced  .\MM_USER.C
+_mm_main                          Defined     .\MM_MAIN.C
+                                  Referenced  .\OS_BRINGUP.C
+_mm_seminitialize                 Defined     .\MM_SEM.C
+                                  Referenced  .\MM_INITIALIZE.C
+_mm_shrinkchunk                   Defined     .\MM_SHRINKCHUNK.C
+                                  Referenced  .\MM_MEMALIGN.C
+                                  Referenced  .\MM_REALLOC.C
+_mm_size2ndx                      Defined     .\MM_SIZE2NDX.C
+                                  Referenced  .\MM_ADDFREECHUNK.C
+                                  Referenced  .\MM_MALLOC.C
+_mm_takesemaphore                 Defined     .\MM_SEM.C
+                                  Referenced  .\MM_FREE.C
+                                  Referenced  .\MM_MALLOC.C
+                                  Referenced  .\MM_MEMALIGN.C
+                                  Referenced  .\MM_MALLINFO.C
+                                  Referenced  .\MM_REALLOC.C
+_mm_trysemaphore                  Defined     .\MM_SEM.C
+                                  Referenced  .\MM_USER.C
+_mq_close                         Defined     .\MQ_CLOSE.C
+                                  Referenced  .\MQ_RELEASE.C
+_mq_desblockalloc                 Defined     .\MQ_INITIALIZE.C
+_mq_initialize                    Defined     .\MQ_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_mq_msgfree                       Defined     .\MQ_MSGFREE.C
+                                  Referenced  .\MQ_MSGQFREE.C
+_mq_msgqfree                      Defined     .\MQ_MSGQFREE.C
+                                  Referenced  .\MQ_CLOSE.C
+_mq_recover                       Defined     .\MQ_RECOVER.C
+                                  Referenced  .\TASK_RECOVER.C
+_mq_release                       Defined     .\MQ_RELEASE.C
+                                  Referenced  .\GROUP_LEAVE.C
+_mq_waitirq                       Defined     .\MQ_WAITIRQ.C
+                                  Referenced  .\SIG_DISPATCH.C
+_near_heapbot                     Defined     LINKER
+_near_heaptop                     Defined     LINKER
+_near_stack                       Defined     LINKER
+                                  Referenced  z16f_head.asm
+_open                             Defined     .\FS_OPEN.C
+                                  Referenced  .\GROUP_SETUPIDLEFILES.C
+_os_bringup                       Defined     .\OS_BRINGUP.C
+                                  Referenced  .\OS_START.C
+_os_start                         Defined     .\OS_START.C
+                                  Referenced  z16f_head.asm
+_printf                           Defined     STDIO\LIB_PRINTF.C
+                                  Referenced  .\MM_MAIN.C
+_pthread_givesemaphore            Defined     .\PTHREAD_INITIALIZE.C
+_pthread_initialize               Defined     .\PTHREAD_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_pthread_release                  Defined     .\PTHREAD_RELEASE.C
+                                  Referenced  .\GROUP_LEAVE.C
+_pthread_schedsetup               Defined     .\TASK_SETUP.C
+_pthread_takesemaphore            Defined     .\PTHREAD_INITIALIZE.C
+_realloc                          Defined     .\MM_REALLOC.C
+                                  Referenced  .\MM_MAIN.C
+_register_driver                  Defined     .\FS_REGISTERDRIVER.C
+                                  Referenced  SERIAL\LOWCONSOLE.C
+                                  Referenced  .\DEV_NULL.C
+_root_inode                       Defined     .\FS_INODE.C
+                                  Referenced  .\FS_INODERESERVE.C
+_sched_addblocked                 Defined     .\SCHED_ADDBLOCKED.C
+                                  Referenced  .\TASK_EXIT.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+_sched_addprioritized             Defined     .\SCHED_ADDPRIORITIZED.C
+                                  Referenced  .\SCHED_ADDBLOCKED.C
+                                  Referenced  .\SCHED_ADDREADYTORUN.C
+_sched_addreadytorun              Defined     .\SCHED_ADDREADYTORUN.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+_sched_garbagecollection          Defined     .\SCHED_GARBAGE.C
+                                  Referenced  .\OS_START.C
+_sched_getfiles                   Defined     .\SCHED_GETFILES.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  .\FS_WRITE.C
+                                  Referenced  .\FS_OPEN.C
+                                  Referenced  .\FS_FILEDUP2.C
+                                  Referenced  .\FS_LSEEK.C
+_sched_getstreams                 Defined     .\SCHED_GETSTREAMS.C
+                                  Referenced  .\MM_MAIN.C
+                                  Referenced  STDIO\LIB_PRINTF.C
+_sched_gettcb                     Defined     .\SCHED_GETTCB.C
+                                  Referenced  .\TASK_TERMINATE.C
+                                  Referenced  .\SIG_DISPATCH.C
+_sched_lock                       Defined     .\SCHED_LOCK.C
+                                  Referenced  .\TASK_TERMINATE.C
+                                  Referenced  .\SIG_FINDACTION.C
+                                  Referenced  .\MQ_CLOSE.C
+                                  Referenced  .\ENV_DUP.C
+                                  Referenced  .\TASK_SETUP.C
+                                  Referenced  .\SIG_PROCMASK.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_DELIVER.C
+_sched_mergepending               Defined     .\SCHED_MERGEPENDING.C
+                                  Referenced  .\TASK_EXIT.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  COMMON\UP_RELEASEPENDING.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+_sched_process_timer              Defined     .\SCHED_PROCESSTIMER.C
+                                  Referenced  CHIP\Z16F_TIMERISR.C
+_sched_releasetcb                 Defined     .\SCHED_RELEASETCB.C
+                                  Referenced  .\TASK_CREATE.C
+                                  Referenced  .\TASK_TERMINATE.C
+_sched_removeblocked              Defined     .\SCHED_REMOVEBLOCKED.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+_sched_removereadytorun           Defined     .\SCHED_REMOVEREADYTORUN.C
+                                  Referenced  .\TASK_EXIT.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+_sched_self                       Defined     .\SCHED_SELF.C
+                                  Referenced  .\FS_FDOPEN.C
+_sched_ufree                      Defined     .\SCHED_FREE.C
+                                  Referenced  MISC\LIB_INIT.C
+                                  Referenced  .\GROUP_LEAVE.C
+                                  Referenced  .\SCHED_RELEASETCB.C
+                                  Referenced  COMMON\UP_RELEASESTACK.C
+                                  Referenced  .\PTHREAD_RELEASE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGACTION.C
+                                  Referenced  .\MQ_MSGQFREE.C
+                                  Referenced  .\MQ_MSGFREE.C
+                                  Referenced  .\TIMER_RELEASE.C
+                                  Referenced  .\ENV_RELEASE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGNAL.C
+_sched_unlock                     Defined     .\SCHED_UNLOCK.C
+                                  Referenced  .\TASK_TERMINATE.C
+                                  Referenced  .\SIG_FINDACTION.C
+                                  Referenced  .\MQ_CLOSE.C
+                                  Referenced  .\ENV_DUP.C
+                                  Referenced  .\TASK_SETUP.C
+                                  Referenced  .\SIG_PROCMASK.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_DELIVER.C
+_sem_destroy                      Defined     .\SEM_DESTROY.C
+                                  Referenced  MISC\LIB_INIT.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  .\PTHREAD_RELEASE.C
+_sem_init                         Defined     SEMAPHORE\SEM_INIT.C
+                                  Referenced  MISC\LIB_INIT.C
+                                  Referenced  .\FS_INODE.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  .\MM_SEM.C
+                                  Referenced  .\GROUP_CREATE.C
+                                  Referenced  MISC\LIB_FILESEM.C
+                                  Referenced  .\FS_FDOPEN.C
+_sem_initialize                   Defined     .\SEM_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_sem_post                         Defined     .\SEM_POST.C
+                                  Referenced  .\FS_INODE.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  .\MM_SEM.C
+                                  Referenced  .\PTHREAD_INITIALIZE.C
+                                  Referenced  MISC\LIB_STREAMSEM.C
+                                  Referenced  MISC\LIB_FILESEM.C
+                                  Referenced  .\FS_FDOPEN.C
+_sem_trywait                      Defined     .\SEM_TRYWAIT.C
+                                  Referenced  .\MM_SEM.C
+_sem_wait                         Defined     .\SEM_WAIT.C
+                                  Referenced  .\FS_INODE.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  .\MM_SEM.C
+                                  Referenced  .\PTHREAD_INITIALIZE.C
+                                  Referenced  MISC\LIB_STREAMSEM.C
+                                  Referenced  MISC\LIB_FILESEM.C
+                                  Referenced  .\FS_FDOPEN.C
+_sem_waitirq                      Defined     .\SEM_WAITIRQ.C
+                                  Referenced  .\SIG_DISPATCH.C
+_sig_allocateactionblock          Defined     .\SIG_INITIALIZE.C
+                                  Referenced  .\SIG_ACTION.C
+_sig_allocatependingsigaction     Defined     .\SIG_ALLOCATEPENDINGSIGACTION.C
+                                  Referenced  .\SIG_DISPATCH.C
+_sig_cleanup                      Defined     .\SIG_CLEANUP.C
+                                  Referenced  .\TASK_EXITHOOK.C
+_sig_deliver                      Defined     .\SIG_DELIVER.C
+                                  Referenced  .\SIG_DISPATCH.C
+_sig_dispatch                     Defined     .\SIG_DISPATCH.C
+_sig_findaction                   Defined     .\SIG_FINDACTION.C
+                                  Referenced  .\SIG_ACTION.C
+                                  Referenced  .\SIG_DISPATCH.C
+_sig_initialize                   Defined     .\SIG_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_sig_lowest                       Defined     .\SIG_LOWEST.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+_sig_pendingset                   Defined     .\SIG_PENDING.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+_sig_release                      Defined     .\SIG_CLEANUP.C
+                                  Referenced  .\GROUP_LEAVE.C
+_sig_releaseaction                Defined     .\SIG_ACTION.C
+                                  Referenced  .\SIG_CLEANUP.C
+_sig_releasependingsigaction      Defined     .\SIG_RELEASEPENDINGSIGACTION.C
+                                  Referenced  .\SIG_CLEANUP.C
+                                  Referenced  .\SIG_DELIVER.C
+_sig_releasependingsignal         Defined     .\SIG_RELEASEPENDINGSIGNAL.C
+                                  Referenced  .\SIG_CLEANUP.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+_sig_removependingsignal          Defined     .\SIG_REMOVEPENDINGSIGNAL.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+_sig_tcbdispatch                  Defined     .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+_sig_unmaskpendingsignal          Defined     .\SIG_UNMASKPENDINGSIGNAL.C
+                                  Referenced  .\SIG_PROCMASK.C
+                                  Referenced  .\SIG_DELIVER.C
+_sigaction                        Defined     .\SIG_ACTION.C
+_sigaddset                        Defined     SIGNAL\SIG_ADDSET.C
+                                  Referenced  .\SIG_PENDING.C
+_sigdelset                        Defined     SIGNAL\SIG_DELSET.C
+                                  Referenced  .\SIG_UNMASKPENDINGSIGNAL.C
+_sigismember                      Defined     SIGNAL\SIG_ISMEMBER.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_LOWEST.C
+_sigpending                       Defined     .\SIG_PENDING.C
+_sigprocmask                      Defined     .\SIG_PROCMASK.C
+                                  Referenced  .\TASK_SETUP.C
+_sq_addafter                      Defined     QUEUE\SQ_ADDAFTER.C
+                                  Referenced  .\WD_START.C
+_sq_addfirst                      Defined     QUEUE\SQ_ADDFIRST.C
+                                  Referenced  .\WD_START.C
+_sq_addlast                       Defined     QUEUE\SQ_ADDLAST.C
+                                  Referenced  .\SIG_INITIALIZE.C
+                                  Referenced  .\TIMER_INITIALIZE.C
+                                  Referenced  .\WD_DELETE.C
+                                  Referenced  .\WD_START.C
+                                  Referenced  .\WD_INITIALIZE.C
+                                  Referenced  QUEUE\SQ_ADDAFTER.C
+                                  Referenced  .\MQ_INITIALIZE.C
+                                  Referenced  .\SCHED_FREE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGACTION.C
+                                  Referenced  .\SIG_ACTION.C
+                                  Referenced  .\MQ_CLOSE.C
+                                  Referenced  .\MQ_MSGFREE.C
+                                  Referenced  .\TIMER_RELEASE.C
+                                  Referenced  .\SIG_RELEASEPENDINGSIGNAL.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_DELIVER.C
+_sq_rem                           Defined     QUEUE\SQ_REM.C
+                                  Referenced  .\SIG_ACTION.C
+                                  Referenced  .\MQ_CLOSE.C
+                                  Referenced  .\TIMER_RELEASE.C
+                                  Referenced  .\SIG_DELIVER.C
+_sq_remafter                      Defined     QUEUE\SQ_REMAFTER.C
+                                  Referenced  .\WD_CANCEL.C
+                                  Referenced  QUEUE\SQ_REM.C
+                                  Referenced  .\SIG_REMOVEPENDINGSIGNAL.C
+_sq_remfirst                      Defined     QUEUE\SQ_REMFIRST.C
+                                  Referenced  .\SCHED_GARBAGE.C
+                                  Referenced  .\WD_START.C
+                                  Referenced  .\WD_CANCEL.C
+                                  Referenced  .\SIG_CLEANUP.C
+                                  Referenced  .\SIG_ACTION.C
+                                  Referenced  .\SIG_REMOVEPENDINGSIGNAL.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_ALLOCATEPENDINGSIGACTION.C
+_strchr                           Defined     STRING\LIB_STRCHR.C
+                                  Referenced  STDIO\LIB_LIBVSPRINTF.C
+_strcpy                           Defined     STRING\LIB_STRCPY.C
+                                  Referenced  STRING\LIB_STRDUP.C
+_strdup                           Defined     STRING\LIB_STRDUP.C
+                                  Referenced  .\TASK_SETUP.C
+_stream_semgive                   Defined     MISC\LIB_STREAMSEM.C
+                                  Referenced  STDIO\LIB_LIBFLUSHALL.C
+_stream_semtake                   Defined     MISC\LIB_STREAMSEM.C
+                                  Referenced  STDIO\LIB_LIBFLUSHALL.C
+_strlen                           Defined     STRING\LIB_STRLEN.C
+                                  Referenced  STRING\LIB_STRDUP.C
+_SYS_CLK_FREQ                     Defined     LINKER
+                                  Referenced  CHIP\Z16F_CLKINIT.C
+                                  Referenced  z16f_lowuart.asm
+_SYS_CLK_SRC                      Defined     LINKER
+                                  Referenced  CHIP\Z16F_CLKINIT.C
+_syslog                           Defined     STDIO\LIB_SYSLOG.C
+_task_activate                    Defined     .\TASK_ACTIVATE.C
+                                  Referenced  .\TASK_CREATE.C
+_task_argsetup                    Defined     .\TASK_SETUP.C
+                                  Referenced  .\TASK_CREATE.C
+_task_create                      Defined     .\TASK_CREATE.C
+                                  Referenced  .\OS_BRINGUP.C
+_task_exit                        Defined     .\TASK_EXIT.C
+                                  Referenced  COMMON\UP_EXIT.C
+_task_exithook                    Defined     .\TASK_EXITHOOK.C
+                                  Referenced  .\EXIT.C
+                                  Referenced  .\TASK_TERMINATE.C
+_task_recover                     Defined     .\TASK_RECOVER.C
+                                  Referenced  .\TASK_EXITHOOK.C
+_task_schedsetup                  Defined     .\TASK_SETUP.C
+                                  Referenced  .\TASK_CREATE.C
+_task_start                       Defined     .\TASK_START.C
+                                  Referenced  .\TASK_CREATE.C
+_task_terminate                   Defined     .\TASK_TERMINATE.C
+                                  Referenced  .\TASK_EXIT.C
+_timer_delete                     Defined     .\TIMER_DELETE.C
+                                  Referenced  .\TIMER_INITIALIZE.C
+_timer_deleteall                  Defined     .\TIMER_INITIALIZE.C
+                                  Referenced  .\SCHED_RELEASETCB.C
+_timer_initialize                 Defined     .\TIMER_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_timer_release                    Defined     .\TIMER_RELEASE.C
+                                  Referenced  .\TIMER_DELETE.C
+_umm_addregion                    Defined     .\MM_USER.C
+_umm_givesemaphore                Defined     .\MM_USER.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  .\SCHED_FREE.C
+_umm_initialize                   Defined     .\MM_USER.C
+                                  Referenced  .\OS_START.C
+_umm_trysemaphore                 Defined     .\MM_USER.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  .\SCHED_FREE.C
+_up_allocate_heap                 Defined     COMMON\UP_ALLOCATEHEAP.C
+                                  Referenced  .\OS_START.C
+_up_assert                        Defined     COMMON\UP_ASSERT.C
+                                  Referenced  CHIP\Z16F_SYSEXEC.C
+                                  Referenced  .\SCHED_MERGEPENDING.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  .\MM_FREE.C
+                                  Referenced  MISC\LIB_INIT.C
+                                  Referenced  .\FS_INODE.C
+                                  Referenced  .\SEM_POST.C
+                                  Referenced  .\GROUP_LEAVE.C
+                                  Referenced  .\FS_FILES.C
+                                  Referenced  STDIO\LIB_LOWOUTSTREAM.C
+                                  Referenced  .\SEM_WAIT.C
+                                  Referenced  .\MM_SEM.C
+                                  Referenced  .\SCHED_ADDBLOCKED.C
+                                  Referenced  .\SCHED_ADDPRIORITIZED.C
+                                  Referenced  CHIP\Z16F_TIMERISR.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  .\SCHED_ADDREADYTORUN.C
+                                  Referenced  .\WD_START.C
+                                  Referenced  STDIO\LIB_RAWOUTSTREAM.C
+                                  Referenced  .\GROUP_CREATE.C
+                                  Referenced  .\MM_MALLOC.C
+                                  Referenced  .\OS_BRINGUP.C
+                                  Referenced  .\GROUP_SETUPTASKFILES.C
+                                  Referenced  .\WD_CANCEL.C
+                                  Referenced  .\MQ_RECOVER.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+                                  Referenced  .\SCHED_REMOVEBLOCKED.C
+                                  Referenced  MISC\LIB_STREAMSEM.C
+                                  Referenced  .\SEM_TRYWAIT.C
+                                  Referenced  .\SCHED_REMOVEREADYTORUN.C
+                                  Referenced  .\TASK_TERMINATE.C
+                                  Referenced  .\SCHED_LOCK.C
+                                  Referenced  MISC\LIB_FILESEM.C
+                                  Referenced  .\SIG_ACTION.C
+                                  Referenced  .\GROUP_SETUPSTREAMS.C
+                                  Referenced  .\MQ_CLOSE.C
+                                  Referenced  .\MQ_MSGFREE.C
+                                  Referenced  .\IRQ_UNEXPECTEDISR.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+                                  Referenced  .\FS_FDOPEN.C
+                                  Referenced  .\FS_OPEN.C
+                                  Referenced  .\ENV_DUP.C
+                                  Referenced  .\MM_MEMALIGN.C
+                                  Referenced  .\MM_MALLINFO.C
+                                  Referenced  .\SCHED_GETSTREAMS.C
+                                  Referenced  .\MM_SHRINKCHUNK.C
+                                  Referenced  .\FS_INODERESERVE.C
+                                  Referenced  .\ENV_RELEASE.C
+                                  Referenced  .\MM_REALLOC.C
+                                  Referenced  .\GROUP_SETUPIDLEFILES.C
+                                  Referenced  .\SIG_REMOVEPENDINGSIGNAL.C
+                                  Referenced  .\SIG_PENDING.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SEM_WAITIRQ.C
+                                  Referenced  .\MQ_WAITIRQ.C
+                                  Referenced  COMMON\UP_SIGDELIVER.C
+                                  Referenced  STDIO\LIB_STDOUTSTREAM.C
+                                  Referenced  .\FS_LSEEK.C
+                                  Referenced  .\TASK_START.C
+_up_block_task                    Defined     COMMON\UP_BLOCKTASK.C
+                                  Referenced  .\SEM_WAIT.C
+_up_copystate                     Defined     COMMON\UP_COPYSTATE.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+                                  Referenced  COMMON\UP_RELEASEPENDING.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+                                  Referenced  COMMON\UP_SCHEDULESIGACTION.C
+                                  Referenced  COMMON\UP_SIGDELIVER.C
+_up_create_stack                  Defined     COMMON\UP_CREATESTACK.C
+                                  Referenced  .\TASK_CREATE.C
+_up_disable_irq                   Defined     CHIP\Z16F_IRQ.C
+                                  Referenced  CHIP\Z16F_TIMERISR.C
+                                  Referenced  .\IRQ_ATTACH.C
+_up_doirq                         Defined     COMMON\UP_DOIRQ.C
+                                  Referenced  z16f_head.asm
+_up_enable_irq                    Defined     CHIP\Z16F_IRQ.C
+                                  Referenced  COMMON\UP_DOIRQ.C
+                                  Referenced  CHIP\Z16F_TIMERISR.C
+_up_idle                          Defined     COMMON\UP_IDLE.C
+                                  Referenced  .\OS_START.C
+_up_initial_state                 Defined     COMMON\UP_INITIALSTATE.C
+                                  Referenced  .\OS_START.C
+                                  Referenced  .\TASK_SETUP.C
+_up_initialize                    Defined     COMMON\UP_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_up_interrupt_context             Defined     COMMON\UP_INTERRUPTCONTEXT.C
+                                  Referenced  COMMON\UP_ASSERT.C
+                                  Referenced  .\ERRNO_GETPTR.C
+                                  Referenced  .\SEM_WAIT.C
+                                  Referenced  .\SEM_TRYWAIT.C
+                                  Referenced  .\SCHED_FREE.C
+                                  Referenced  .\SCHED_UNLOCK.C
+                                  Referenced  .\SCHED_LOCK.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SIG_ALLOCATEPENDINGSIGACTION.C
+_up_irqinitialize                 Defined     CHIP\Z16F_IRQ.C
+                                  Referenced  COMMON\UP_INITIALIZE.C
+_up_maskack_irq                   Defined     CHIP\Z16F_IRQ.C
+                                  Referenced  COMMON\UP_DOIRQ.C
+_up_mdelay                        Defined     COMMON\UP_MDELAY.C
+                                  Referenced  COMMON\UP_ASSERT.C
+_up_putc                          Defined     CHIP\Z16F_SERIAL.C
+                                  Referenced  STDIO\LIB_LOWOUTSTREAM.C
+                                  Referenced  SERIAL\LOWCONSOLE.C
+_up_release_pending               Defined     COMMON\UP_RELEASEPENDING.C
+                                  Referenced  .\SCHED_UNLOCK.C
+_up_release_stack                 Defined     COMMON\UP_RELEASESTACK.C
+                                  Referenced  .\SCHED_RELEASETCB.C
+                                  Referenced  COMMON\UP_CREATESTACK.C
+_up_reprioritize_rtr              Defined     COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  .\SCHED_PROCESSTIMER.C
+_up_restoreusercontext            Defined     z16f_restoreusercontext.asm
+                                  Referenced  COMMON\UP_EXIT.C
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+                                  Referenced  COMMON\UP_RELEASEPENDING.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+                                  Referenced  COMMON\UP_SIGDELIVER.C
+_up_saveusercontext               Defined     z16f_saveusercontext.asm
+                                  Referenced  COMMON\UP_REPRIORITIZERTR.C
+                                  Referenced  COMMON\UP_UNBLOCKTASK.C
+                                  Referenced  COMMON\UP_RELEASEPENDING.C
+                                  Referenced  COMMON\UP_BLOCKTASK.C
+_up_schedule_sigaction            Defined     COMMON\UP_SCHEDULESIGACTION.C
+                                  Referenced  .\SIG_DISPATCH.C
+_up_sigdeliver                    Defined     COMMON\UP_SIGDELIVER.C
+                                  Referenced  COMMON\UP_SCHEDULESIGACTION.C
+_up_timerinit                     Defined     CHIP\Z16F_TIMERISR.C
+                                  Referenced  COMMON\UP_INITIALIZE.C
+_up_timerisr                      Defined     CHIP\Z16F_TIMERISR.C
+_up_unblock_task                  Defined     COMMON\UP_UNBLOCKTASK.C
+                                  Referenced  .\SEM_POST.C
+                                  Referenced  .\SIG_DISPATCH.C
+                                  Referenced  .\SEM_WAITIRQ.C
+                                  Referenced  .\MQ_WAITIRQ.C
+                                  Referenced  .\TASK_ACTIVATE.C
+_vdbg                             Defined     MISC\LIB_DBG.C
+                                  Referenced  .\MM_FREE.C
+                                  Referenced  .\MM_MALLOC.C
+                                  Referenced  .\MM_MALLINFO.C
+_vfprintf                         Defined     STDIO\LIB_VFPRINTF.C
+                                  Referenced  STDIO\LIB_PRINTF.C
+                                  Referenced  STDIO\LIB_FPRINTF.C
+_vsyslog                          Defined     STDIO\LIB_SYSLOG.C
+                                  Referenced  MISC\LIB_DBG.C
+_wd_cancel                        Defined     .\WD_CANCEL.C
+                                  Referenced  .\TASK_RECOVER.C
+                                  Referenced  .\WD_DELETE.C
+                                  Referenced  .\WD_START.C
+_wd_delete                        Defined     .\WD_DELETE.C
+                                  Referenced  .\TASK_RECOVER.C
+                                  Referenced  .\TIMER_RELEASE.C
+_wd_initialize                    Defined     .\WD_INITIALIZE.C
+                                  Referenced  .\OS_START.C
+_wd_start                         Defined     .\WD_START.C
+_wd_timer                         Defined     .\WD_START.C
+                                  Referenced  .\SCHED_PROCESSTIMER.C
+_write                            Defined     .\FS_WRITE.C
+                                  Referenced  STDIO\LIB_RAWOUTSTREAM.C
+                                  Referenced  STDIO\LIB_LIBFFLUSH.C
+_z16f_clkinit                     Defined     CHIP\Z16F_CLKINIT.C
+                                  Referenced  z16f_head.asm
+_z16f_lowinit                     Defined     .\Z16F_LOWINIT.C
+                                  Referenced  z16f_head.asm
+_z16f_lowuartinit                 Defined     z16f_lowuart.asm
+                                  Referenced  z16f_head.asm
+_z16f_reset                       Defined     z16f_head.asm
+                                  Referenced  CHIP\Z16F_SYSEXEC.C
+_z16f_sysexec                     Defined     CHIP\Z16F_SYSEXEC.C
+                                  Referenced  z16f_head.asm
+_zalloc                           Defined     .\MM_ZALLOC.C
+                                  Referenced  .\GROUP_CREATE.C
+                                  Referenced  .\TASK_CREATE.C
+                                  Referenced  .\FS_INODERESERVE.C
+                                  Referenced  COMMON\UP_CREATESTACK.C
+
+OUTPUT CHECKSUM
+===============
+nuttx.hex            0022FBA9
+nuttx.lod            0022FBA9
+
+
+
+END OF LINK MAP:
+================
+0 Errors
+0 Warnings

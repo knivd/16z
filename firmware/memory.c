@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
@@ -45,20 +46,24 @@ void memory_build_map(void) {
 
 
 unsigned long memory_test(unsigned long begin, unsigned long length) {
-	unsigned long mask[4]= {0xff690096, 0x12488421, 0xffffffff, 0x00000000};
-	unsigned long addr, r=0;
+	unsigned long addr,r,z,v;
+    unsigned char b,b1,m,m1;
+    srand(0);
+    r=0;
 	for(addr=begin; addr<=(begin+length-4); addr++) {		
-		unsigned long z;
-		unsigned char b,m=0;
-		for(b=0; b<4; b++) {
-			M32(addr)=mask[b];
+        m=1+(rand()&7);
+        m1=0;
+        for(b=0; b<m; b++) {
+            v=0;
+            for(b1=0; b1<(rand()&31); b1++) v|=(1ul<<(rand()&31));
+            M32(addr)=v;
 			z=M32(addr);
-			if(mask[b] == z) m++; else break;
-		}
-		if(m == 4) {
-			r++;
-			if(addr == (begin+length-4)) r+=3;
-		}
+			if(z == v) m1++; else break;
+        }
+        if(m == m1) {
+            r++;
+            if(addr == (begin+length-4)) r+=3;
+        }
 	}
 	return r;
 }
