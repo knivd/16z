@@ -29,7 +29,7 @@ void main(void) {
 	PCOUT=0xff; PHOUT=0xff; PJOUT=0xff;	// default high state for some ports
 	
 	// these will be set by the linker anyway
-	EXTCS0=0xb012; EXTCS1=0xb012; EXTCS2=0x9011; EXTCS3=0x9015; EXTCS4=0x9015; EXTCS5=0x9015;
+	EXTCS0=0x9001; EXTCS1=0x9001; EXTCS2=0x9011; EXTCS3=0x9015; EXTCS4=0x9015; EXTCS5=0x9015;
 	EXTCT=0x40; 	// enable and configure the external interface
     
     // ==================== no C variables before this point since the external bus won't be configured yet ============================

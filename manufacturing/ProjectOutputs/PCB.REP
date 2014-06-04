@@ -93,6 +93,81 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
+Generating : Signal Layer 1
+      File : PCB.G1
+
+    Adding Layer      : Signal Layer 1
+
+    Adding Layer      : Mechanical 1
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D47
+    D49
+    D51
+    D55
+    D56
+    D58
+    D62
+    D66
+    D67
+    D71
+    D72
+    D73
+    D77
+    D78
+    D81
+    D82
+    D84
+    D85
+    D86
+*************************************************************
+
+*************************************************************
+Generating : Signal Layer 2
+      File : PCB.G2
+
+    Adding Layer      : Signal Layer 2
+
+    Adding Layer      : Mechanical 1
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D46
+    D47
+    D48
+    D49
+    D51
+    D52
+    D54
+    D55
+    D56
+    D57
+    D58
+    D61
+    D62
+    D64
+    D66
+    D67
+    D71
+    D72
+    D73
+    D74
+    D75
+    D77
+    D78
+    D81
+    D82
+    D84
+    D85
+    D86
+*************************************************************
+
+*************************************************************
 Generating : Bottom Layer
       File : PCB.GBL
 
@@ -105,12 +180,7 @@ Generating : Bottom Layer
 
 Used DCodes :
     D10
-    D46
-    D47
-    D48
     D49
-    D50
-    D52
     D54
     D55
     D56
@@ -282,10 +352,10 @@ Generating : Top Overlay
 
 Used DCodes :
     D10
-    D48
     D49
     D50
-    D53
+    D51
+    D52
     D87
     D88
     D89

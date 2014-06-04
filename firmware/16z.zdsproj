@@ -7,7 +7,7 @@
 <file filter-key="">.\memory.c</file>
 <file filter-key="">.\spi.c</file>
 <file filter-key="">.\uart0.c</file>
-<file filter-key="flash">C:\Users\Konstantin\Desktop\nuttx.hex</file>
+<file filter-key="flash">c:\users\konstantin\desktop\nuttx.hex</file>
 </files>
 
 <!-- configuration information -->
