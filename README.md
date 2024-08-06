@@ -3,9 +3,9 @@
 
 The 'contemporary retro' computer
 
-  '640K ought to be enough for anyone...'
+'640K must to be enough for anything...'
   
-Although it is known now that Bill Gates has never said that himself, whoever did, was probably close to the truth. How the resources in a system are used by the software is all that actually matters. Of course that assumes a system thought to properly utilise a well written software...
+Although it is now known that Bill Gates has never said that himself, whoever did, was probably not too far off from the truth. How the resources in a system are used by the software is all that actually matters. Of course, that assumes a system properly thought to utilise well written software...
 
 Personal computing has gone a long way, but that doesn't mean it was just the right one. There is still a large number of real-life applications where an old DOS (or other similar style)-based machine works just as fine, if not even better, than the latest multicore gigahertz beast running the most recent colourful software disaster. On the way up somehow the computers have lost their way and users have lost their enthusiasm and inspiration along with that.
 
@@ -19,10 +19,5 @@ Possible applications: accounting, early programming education, data terminals, 
 
 And the most important of all - to bring some entertainment while working on it...
 
-
-Check the project's Wiki pages for more detailed information.
-
-
-
-knivd@me.com
+Check out the project's Wiki pages for more detailed information.
 
