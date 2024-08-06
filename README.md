@@ -3,7 +3,7 @@
 
 The 'contemporary retro' computer
 
-'640K must to be enough for anything...'
+'640K must be enough for anything...'
   
 Although it is now known that Bill Gates has never said that himself, whoever did, was probably not too far off from the truth. How the resources in a system are used by the software is all that actually matters. Of course, that assumes a system properly thought to utilise well written software...
 
