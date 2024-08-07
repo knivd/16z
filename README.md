@@ -1,23 +1,22 @@
 16z
 ===
 
-The 'contemporary retro' computer
+The 'Contemporary Retro' Computer
 
-'640K must be enough for anything...'
-  
-Although it is now known that Bill Gates has never said that himself, whoever did, was probably not too far off from the truth. How the resources in a system are used by the software is all that actually matters. Of course, that assumes a system properly thought to utilise well written software...
+'640K ought to be enough for anyone...'
 
-Personal computing has gone a long way, but that doesn't mean it was just the right one. There is still a large number of real-life applications where an old DOS (or other similar style)-based machine works just as fine, if not even better, than the latest multicore gigahertz beast running the most recent colourful software disaster. On the way up somehow the computers have lost their way and users have lost their enthusiasm and inspiration along with that.
+Although it is now known that Bill Gates never actually said this, whoever did was probably not far from the truth. How the resources in a system are used by the software is what really matters. Of course, this assumes a system is properly designed to utilise well-written software.
 
-This project is about a computer in the old way of perception - taking from the place where things went wrong and trying to rectify by making a retro style computer built with modern 21st century parts. Large memory and maximum speed are not aims, neither great graphics or ability to run any 'nix OS, but other things like being 'cute' (to as much as you can apply that to a board), inspiring, open and allowing easy making of user-designed add-on boards in every hobby lab.
+Personal computing has come a long way, but that doesn't mean the path was always ideal. There are still numerous real-life applications where an old DOS-based (or similar) machine works just as well, if not better, than the latest multicore, gigahertz beast running the most recent colourful software disaster. Along the way, computers have somehow lost their direction, and users have lost their enthusiasm and inspiration.
 
-Zilog's Z16F is a true gem amongst the dominated by Intel, ARM and MIPS processors today. Although working at very low by the modern standards frequency, it is amazing with very clean and well thought internal architecture. It is also one of the very few Von-Neumann architecture CISC processors available on the market now and is very suitable for early introduction into microprocessor systems design and programming. Its parameters and structure just revive that long forgotten urge to create - a processor in the real style of the 'golden age' of the personal computing.
+This project is about a computer built in the spirit of the old ways, taking inspiration from where things went wrong and attempting to rectify it by creating a retro-style computer with modern 21st-century components. Large memory and maximum speed are not the aims, nor are great graphics or the ability to run any 'nix OS. Instead, the focus is on being 'cute' (as much as you can apply that to a board), inspiring, open, and allowing the easy creation of user-designed add-on boards in any hobby lab.
 
-The ultimate aim: being simple and accessible to literally everyone and to demostrate that a good usable computer does not need 'giga'-parameters. It is all matter of properly written software.
+Zilog's Z16F is a true gem among today's processors, dominated by Intel, ARM, and MIPS. Although it operates at a frequency considered very low by modern standards, it is amazing due to its very clean and well-thought-out internal architecture. It is also one of the very few Von-Neumann architecture CISC processors available on the market now, making it highly suitable for early introduction into microprocessor systems design and programming. Its parameters and structure revive that long-forgotten urge to create—a processor in the real style of the 'golden age' of personal computing.
 
-Possible applications: accounting, early programming education, data terminals, retro-style gaming, hobby design and programming.
+The ultimate aim: to be simple and accessible to literally everyone and to demonstrate that a good, usable computer does not need 'giga'-parameters. It is all a matter of properly written software.
 
-And the most important of all - to bring some entertainment while working on it...
+Possible applications: accounting, early programming education, data terminals, retro-style gaming, hobby design, and programming.
+
+And most importantly, to bring some entertainment while working on it...
 
 Check out the project's Wiki pages for more detailed information.
-
